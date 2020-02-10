@@ -72,7 +72,7 @@ module.exports = {
     new GraphQLApp(),
     new AdminUIApp({
       enableDefaultRoute: true,
-      // hooks: require.resolve('./admin-ui/'),
+      hooks: require.resolve('./admin-ui/'),
       authStrategy,
     }),
     // new NextApp({ dir: 'shop' })
