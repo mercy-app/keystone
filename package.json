@@ -145,6 +145,7 @@
   },
   "workspaces": {
     "packages": [
+      "mercy",
       "packages/*",
       "!packages/arch",
       "packages/arch/docs",
