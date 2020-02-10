@@ -237,11 +237,8 @@ exports.Product = {
   fields: {
     title: { type: Text },
     slug: { type: Slug, from: 'title' },
-    categories: {
-      type: Relationship,
-      ref: 'Category.products',
-      many: true,
-    },
+    type: { type: Text },
+    unit: { type: Text },
     status: {
       type: Select,
       defaultValue: 'draft',
@@ -250,12 +247,18 @@ exports.Product = {
         { label: 'Published', value: 'published' },
       ],
     },
+    categories: {
+      type: Relationship,
+      ref: 'Category.products',
+      many: true,
+    },
     coupons: { type: Relationship, ref: 'Coupon.products', many: true },
     collections: { type: Relationship, ref: 'Collection.products', many: true },
     attributes: { type: Relationship, ref: 'Attribute.product', many: true },
     variants: { type: Relationship, ref: 'Variant.product', many: true },
-    body: { type: Wysiwyg },
+    description: { type: Wysiwyg },
     posted: { type: DateTime, format: 'DD/MM/YYYY' },
+    gallery: { type: CloudinaryImage, adapter: cloudinaryAdapter, many: true },
     image: { type: CloudinaryImage, adapter: cloudinaryAdapter },
   },
   plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],
