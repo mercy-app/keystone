@@ -9,7 +9,7 @@ export default {
   pages: () => [
     {
       label: 'Help',
-      path: 'help',
+      path: '',
       component: () => {
         return (
           <App>

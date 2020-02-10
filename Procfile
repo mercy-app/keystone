@@ -1,1 +1,1 @@
-web: yarn demo blog dev
+web: yarn mercy

@@ -15,7 +15,7 @@ const {
   User,
   Product,
   Category,
-  Comment,
+  // Comment,
   Site,
   Page,
   Section,
@@ -49,7 +49,7 @@ keystone.createList('Contact', Contact);
 keystone.createList('Card', Card);
 keystone.createList('Product', Product);
 keystone.createList('Category', Category);
-keystone.createList('Comment', Comment);
+// keystone.createList('Comment', Comment);
 keystone.createList('Site', Site);
 keystone.createList('Page', Page);
 keystone.createList('Section', Section);

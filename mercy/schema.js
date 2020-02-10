@@ -74,7 +74,7 @@ exports.Address = {
     info: { type: Text },
     user: {
       type: Relationship,
-      ref: 'User',
+      ref: 'User.addresses',
     },
   },
   access: {
@@ -95,7 +95,7 @@ exports.Card = {
     lastFourDigit: { type: Integer },
     user: {
       type: Relationship,
-      ref: 'User',
+      ref: 'User.cards',
     },
   },
   access: {
@@ -114,7 +114,7 @@ exports.Contact = {
     number: { type: Text },
     user: {
       type: Relationship,
-      ref: 'User',
+      ref: 'User.contacts',
     },
   },
   access: {
@@ -134,17 +134,17 @@ exports.User = {
     email: { type: Text, isUnique: true },
     addresses: {
       type: Relationship,
-      ref: 'Address',
+      ref: 'Address.user',
       many: true,
     },
     contacts: {
       type: Relationship,
-      ref: 'Contact',
+      ref: 'Contact.user',
       many: true,
     },
     cards: {
       type: Relationship,
-      ref: 'Card',
+      ref: 'Card.user',
       many: true,
     },
     dob: {
@@ -174,11 +174,11 @@ exports.Variant = {
     available: { type: Boolean },
     product: {
       type: Relationship,
-      ref: 'Product',
+      ref: 'Product.variants',
     },
     optionValues: {
       type: Relationship,
-      ref: 'OptionValue',
+      ref: 'OptionValue.variant',
       many: true,
     },
   },
@@ -188,6 +188,10 @@ exports.Attribute = {
   fields: {
     key: { type: Text },
     value: { type: Text },
+    product: {
+      type: Relationship,
+      ref: 'Product.attributes',
+    },
   },
   labelResolver: item => item.title,
 };
@@ -197,7 +201,11 @@ exports.OptionValue = {
     name: { type: Text },
     option: {
       type: Relationship,
-      ref: 'Option',
+      ref: 'Option.values',
+    },
+    variant: {
+      type: Relationship,
+      ref: 'Variant.optionValues',
     },
   },
   labelResolver: item => item.name,
@@ -208,7 +216,7 @@ exports.Option = {
     name: { type: Text },
     values: {
       type: Relationship,
-      ref: 'OptionValue',
+      ref: 'OptionValue.option',
       many: true,
     },
   },
@@ -231,7 +239,7 @@ exports.Product = {
     slug: { type: Slug, from: 'title' },
     categories: {
       type: Relationship,
-      ref: 'Category',
+      ref: 'Category.products',
       many: true,
     },
     status: {
@@ -242,9 +250,10 @@ exports.Product = {
         { label: 'Published', value: 'published' },
       ],
     },
+    coupons: { type: Relationship, ref: 'Coupon.products', many: true },
     collections: { type: Relationship, ref: 'Collection.products', many: true },
-    attribute: { type: Relationship, ref: 'Attribute', many: true },
-    variants: { type: Relationship, ref: 'Variant', many: true },
+    attributes: { type: Relationship, ref: 'Attribute.product', many: true },
+    variants: { type: Relationship, ref: 'Variant.product', many: true },
     body: { type: Wysiwyg },
     posted: { type: DateTime, format: 'DD/MM/YYYY' },
     image: { type: CloudinaryImage, adapter: cloudinaryAdapter },
@@ -266,7 +275,7 @@ exports.Coupon = {
     discountInPercent: { type: Number },
     number_of_coupon: { type: Number },
     number_of_used_coupon: { type: Number },
-    products: { type: Relationship, ref: 'Product', many: true },
+    products: { type: Relationship, ref: 'Product.coupons', many: true },
     status: { type: Text },
     expiration_date: { type: DateTime },
   },
@@ -280,7 +289,7 @@ exports.Category = {
     slug: { type: Slug, from: 'title' },
     products: {
       type: Relationship,
-      ref: 'Product',
+      ref: 'Product.categories',
       many: true,
     },
     children: {
@@ -295,17 +304,17 @@ exports.Category = {
   plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],
 };
 
-exports.Comment = {
-  fields: {
-    body: { type: Text, isMultiline: true },
-    originalProduct: {
-      type: Relationship,
-      ref: 'Product',
-    },
-  },
-  plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],
-  labelResolver: item => item.body,
-};
+// exports.Comment = {
+//   fields: {
+//     body: { type: Text, isMultiline: true },
+//     originalProduct: {
+//       type: Relationship,
+//       ref: 'Product',
+//     },
+//   },
+//   plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],
+//   labelResolver: item => item.body,
+// };
 
 exports.Site = {
   fields: {
@@ -321,7 +330,7 @@ exports.Site = {
     },
     pages: {
       type: Relationship,
-      ref: 'Page',
+      ref: 'Page.site',
       many: true,
     },
   },
@@ -335,7 +344,7 @@ exports.Page = {
     description: { type: Text },
     site: {
       type: Relationship,
-      ref: 'Site',
+      ref: 'Site.pages',
     },
     status: {
       type: Select,
@@ -347,7 +356,7 @@ exports.Page = {
     },
     sections: {
       type: Relationship,
-      ref: 'Section',
+      ref: 'Section.page',
       many: true,
     },
   },
@@ -361,11 +370,11 @@ exports.Section = {
     description: { type: Text },
     page: {
       type: Relationship,
-      ref: 'Page',
+      ref: 'Page.sections',
     },
     blocks: {
       type: Relationship,
-      ref: 'Block',
+      ref: 'Block.section',
       many: true,
     },
   },
@@ -379,7 +388,7 @@ exports.Block = {
     description: { type: Text },
     section: {
       type: Relationship,
-      ref: 'Section',
+      ref: 'Section.blocks',
     },
   },
   plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],
@@ -409,7 +418,7 @@ exports.Customer = {
     lastName: { type: Text },
     orders: {
       type: Relationship,
-      ref: 'Order',
+      ref: 'Order.customer',
       many: true,
     },
   },
@@ -426,7 +435,7 @@ exports.Order = {
     status: { type: Number },
     customer: {
       type: Relationship,
-      ref: 'Customer',
+      ref: 'Customer.orders',
     },
     variants: {
       type: Relationship,
