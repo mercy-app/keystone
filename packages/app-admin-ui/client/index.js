@@ -119,22 +119,20 @@ export const KeystoneAdminUI = () => {
                 <Route exact path={signoutPath} render={() => <SignoutPage {...adminMeta} />} />
                 <Route>
                   <ScrollToTop>
-                    <Nav>
-                      <Suspense fallback={<PageLoading />}>
-                        <Switch>
-                          {routes.map(route => {
-                            return (
-                              <Route
-                                exact={route.exact ? true : false}
-                                key={route.path}
-                                path={route.path}
-                                render={route.component}
-                              />
-                            );
-                          })}
-                        </Switch>
-                      </Suspense>
-                    </Nav>
+                    <Suspense fallback={<PageLoading />}>
+                      <Switch>
+                        {routes.map(route => {
+                          return (
+                            <Route
+                              exact={route.exact ? true : false}
+                              key={route.path}
+                              path={route.path}
+                              render={route.component}
+                            />
+                          );
+                        })}
+                      </Switch>
+                    </Suspense>
                   </ScrollToTop>
                 </Route>
               </Switch>
