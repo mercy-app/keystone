@@ -7,7 +7,7 @@ const path = require('path');
 const fs = require('fs');
 const fallback = require('express-history-api-fallback');
 
-const getWebpackConfig = require('./server/getWebpackConfig');
+const getWebpackConfig = require('./server/getWebpackConfig-mercy');
 
 class AdminUIApp {
   constructor({

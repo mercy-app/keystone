@@ -35,7 +35,11 @@ const PROJECT_NAME = 'mercy-app';
 
 const keystone = new Keystone({
   name: PROJECT_NAME,
-  adapter: new Adapter(),
+  secureCookies: false,
+  adapter: new Adapter({
+    mongoUri:
+      'mongodb+srv://admin:admin@cluster0-covhk.mongodb.net/test?retryWrites=true&w=majority',
+  }),
   onConnect: initializeData,
 });
 
