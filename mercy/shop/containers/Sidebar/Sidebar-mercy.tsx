@@ -182,7 +182,7 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
           content={
             <>
               <CategoryDropdown
-                items={data.categories}
+                items={data.allCategories}
                 iconList={iconTypes}
                 handleCategorySelection={(slug: any) => handleCategorySelection(slug)}
                 selectedQueries={selectedQueries}
@@ -210,7 +210,7 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
               content={
                 <>
                   <CategoryDropdown
-                    items={data.categories}
+                    items={data.allCategories}
                     iconList={iconTypes}
                     handleCategorySelection={(slug: any) => handleCategorySelection(slug)}
                     selectedQueries={selectedQueries}
@@ -224,7 +224,7 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
             <Sticky enabled={isSidebarSticky} top={110}>
               <Scrollbars universal autoHide autoHeight autoHeightMax={688}>
                 <CategoryDropdown
-                  items={data.categories}
+                  items={data.allCategories}
                   iconList={iconTypes}
                   handleCategorySelection={(id: any) => handleCategorySelection(id)}
                   selectedQueries={selectedQueries}
