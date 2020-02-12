@@ -74,7 +74,7 @@ exports.Address = {
     info: { type: Text },
     user: {
       type: Relationship,
-      ref: 'User.addresses',
+      ref: 'User.address',
     },
   },
   access: {
@@ -95,7 +95,7 @@ exports.Card = {
     lastFourDigit: { type: Integer },
     user: {
       type: Relationship,
-      ref: 'User.cards',
+      ref: 'User.card',
     },
   },
   access: {
@@ -114,7 +114,7 @@ exports.Contact = {
     number: { type: Text },
     user: {
       type: Relationship,
-      ref: 'User.contacts',
+      ref: 'User.contact',
     },
   },
   access: {
@@ -132,17 +132,17 @@ exports.User = {
   fields: {
     name: { type: Text },
     email: { type: Text, isUnique: true },
-    addresses: {
+    address: {
       type: Relationship,
       ref: 'Address.user',
       many: true,
     },
-    contacts: {
+    contact: {
       type: Relationship,
       ref: 'Contact.user',
       many: true,
     },
-    cards: {
+    card: {
       type: Relationship,
       ref: 'Card.user',
       many: true,

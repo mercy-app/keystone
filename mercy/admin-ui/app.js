@@ -28,36 +28,36 @@ import { withRouter } from 'react-router-dom';
 
 // Language translation Config
 const messages = {
-	en: localEn,
-	ar: localAr,
-	es: localEs,
-	de: localDe,
-	zh: localCn,
-	he: localIl
+  en: localEn,
+  ar: localAr,
+  es: localEs,
+  de: localDe,
+  zh: localCn,
+  he: localIl,
 };
 
 export default withRouter(({ children, location }) => {
-	const deviceType = useDeviceType(window.navigator.userAgent);
-	const query = location.state ? location.state.query : getAllUrlParams();
-	return (
-		<ThemeProvider theme={theme}>
-			<LanguageProvider messages={messages}>
-				<CartProvider>
-					<SearchProvider query={query}>
-						<StickyProvider>
-							<AuthProvider>
-								<>
-									<AppLayout ssr={false} deviceType={deviceType}>
-										{children}
-										{/*<Component {...pageProps} deviceType={deviceType} />*/}
-									</AppLayout>
-									<GlobalStyle />
-								</>
-							</AuthProvider>
-						</StickyProvider>
-					</SearchProvider>
-				</CartProvider>
-			</LanguageProvider>
-		</ThemeProvider>
-	);
+  const deviceType = useDeviceType(window.navigator.userAgent);
+  const query = location.state ? location.state.query : getAllUrlParams();
+  return (
+    <ThemeProvider theme={theme}>
+      <LanguageProvider messages={messages}>
+        <CartProvider>
+          <SearchProvider query={query}>
+            <StickyProvider>
+              <AuthProvider>
+                <>
+                  <AppLayout clientApp={true} deviceType={deviceType}>
+                    {children}
+                    {/*<Component {...pageProps} deviceType={deviceType} />*/}
+                  </AppLayout>
+                  <GlobalStyle />
+                </>
+              </AuthProvider>
+            </StickyProvider>
+          </SearchProvider>
+        </CartProvider>
+      </LanguageProvider>
+    </ThemeProvider>
+  );
 });

@@ -71,7 +71,7 @@ type ProductsProps = {
   type: string;
   fetchLimit?: number;
   loadMore?: boolean;
-  ssr?: boolean;
+  clientApp?: boolean;
   location?: any;
 };
 export const Products: React.FC<ProductsProps> = ({
@@ -79,11 +79,11 @@ export const Products: React.FC<ProductsProps> = ({
   type,
   fetchLimit = 8,
   loadMore = true,
-  ssr,
+  clientApp,
   location,
 }) => {
   let router;
-  if (ssr) {
+  if (!clientApp) {
     router = useRouter();
   } else {
     router = location.state ? location.state : { query: { ...getAllUrlParams() } };
@@ -232,7 +232,7 @@ export const Products: React.FC<ProductsProps> = ({
 };
 
 export default props => {
-  if (props.ssr) {
+  if (!props.clientApp) {
     return <Products {...props} />;
   } else {
     const ProductsWrapper = withRouter(routerProps => <Products {...routerProps} {...props} />);

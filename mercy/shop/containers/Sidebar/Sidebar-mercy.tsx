@@ -110,18 +110,18 @@ type SidebarCategoryProps = {
   type: string;
   history?: any;
   location?: any;
-  ssr?: boolean;
+  clientApp?: boolean;
 };
 
 const SidebarCategory: React.FC<SidebarCategoryProps> = ({
   deviceType: { mobile, tablet, desktop },
   type,
   history,
-  ssr,
+  clientApp,
 }) => {
   const { state, dispatch } = useContext(SearchContext);
   let pathname;
-  if (ssr) {
+  if (!clientApp) {
     const router = useRouter();
     pathname = router.pathname;
   } else {
@@ -239,7 +239,7 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
 };
 
 export default props => {
-  if (props.ssr) {
+  if (!props.clientApp) {
     return <SidebarCategory {...props} />;
   } else {
     const SidebarCategoryWrapper = withRouter(routerProps => (

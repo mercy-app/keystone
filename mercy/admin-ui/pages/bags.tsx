@@ -10,11 +10,11 @@ import Sidebar from 'containers/Sidebar/Sidebar-mercy';
 import Products from 'containers/Products/Products-mercy';
 import CartPopUp from 'containers/Cart/CartPopUp';
 import {
-	MainContentArea,
-	SidebarSection,
-	ContentSection,
-	OfferSection,
-	MobileCarouselDropdown
+  MainContentArea,
+  SidebarSection,
+  ContentSection,
+  OfferSection,
+  MobileCarouselDropdown,
 } from 'styled/pages.style';
 // Static Data Import Here
 import OFFERS from 'data/offers';
@@ -27,81 +27,72 @@ import getAllUrlParams from 'helper/getAllUrlParams-mercy';
 const PAGE_TYPE = 'bags';
 
 function BagsPage({ location }) {
-	const deviceType = useDeviceType(window.navigator.userAgent);
+  const deviceType = useDeviceType(window.navigator.userAgent);
 
-	const query = location.state ? location.state.query : getAllUrlParams();
-	const targetRef = React.useRef(null);
-	React.useEffect(() => {
-		if ((query.text || query.category) && targetRef.current) {
-			window.scrollTo({
-				top: targetRef.current.offsetTop - 110,
-				behavior: 'smooth'
-			});
-		}
-	}, [query]);
+  const query = location.state ? location.state.query : getAllUrlParams();
+  const targetRef = React.useRef(null);
+  React.useEffect(() => {
+    if ((query.text || query.category) && targetRef.current) {
+      window.scrollTo({
+        top: targetRef.current.offsetTop - 110,
+        behavior: 'smooth',
+      });
+    }
+  }, [query]);
 
-	return (
-		<>
-			{/*<Head>
+  return (
+    <>
+      {/*<Head>
         <title>Bags - PickBazar</title>
       </Head>*/}
-			<Modal>
-				<Banner
-					intlTitleId="bagsTitle"
-					intlDescriptionId="bagsSubTitle"
-					imageUrl={BannerImg}
-				/>
+      <Modal>
+        <Banner intlTitleId="bagsTitle" intlDescriptionId="bagsSubTitle" imageUrl={BannerImg} />
 
-				{deviceType.desktop ? (
-					<>
-						<MobileCarouselDropdown>
-							<StoreNav ssr={false} items={storeType} />
-							<Sidebar ssr={false} type={PAGE_TYPE} deviceType={deviceType} />
-						</MobileCarouselDropdown>
-						<OfferSection>
-							<div style={{ margin: '0 -10px' }}>
-								<Carousel deviceType={deviceType} data={OFFERS} />
-							</div>
-						</OfferSection>
-						<MainContentArea>
-							<SidebarSection>
-								<Sidebar ssr={false} type={PAGE_TYPE} deviceType={deviceType} />
-							</SidebarSection>
-							<ContentSection>
-								<div ref={targetRef}>
-									<Products
-										type={PAGE_TYPE}
-										deviceType={deviceType}
-										fetchLimit={16}
-										ssr={false}
-									/>
-								</div>
-							</ContentSection>
-						</MainContentArea>
-					</>
-				) : (
-					<MainContentArea>
-						<StoreNav ssr={false} items={storeType} />
-						<Sidebar ssr={false} type={PAGE_TYPE} deviceType={deviceType} />
-						<OfferSection>
-							<div style={{ margin: '0 -10px' }}>
-								<Carousel deviceType={deviceType} data={OFFERS} />
-							</div>
-						</OfferSection>
-						<ContentSection style={{ width: '100%' }}>
-							<Products
-								type={PAGE_TYPE}
-								deviceType={deviceType}
-								fetchLimit={16}
-								ssr={false}
-							/>
-						</ContentSection>
-					</MainContentArea>
-				)}
-				<CartPopUp deviceType={deviceType} />
-			</Modal>
-		</>
-	);
+        {deviceType.desktop ? (
+          <>
+            <MobileCarouselDropdown>
+              <StoreNav clientApp={true} items={storeType} />
+              <Sidebar clientApp={true} type={PAGE_TYPE} deviceType={deviceType} />
+            </MobileCarouselDropdown>
+            <OfferSection>
+              <div style={{ margin: '0 -10px' }}>
+                <Carousel deviceType={deviceType} data={OFFERS} />
+              </div>
+            </OfferSection>
+            <MainContentArea>
+              <SidebarSection>
+                <Sidebar clientApp={true} type={PAGE_TYPE} deviceType={deviceType} />
+              </SidebarSection>
+              <ContentSection>
+                <div ref={targetRef}>
+                  <Products
+                    type={PAGE_TYPE}
+                    deviceType={deviceType}
+                    fetchLimit={16}
+                    clientApp={true}
+                  />
+                </div>
+              </ContentSection>
+            </MainContentArea>
+          </>
+        ) : (
+          <MainContentArea>
+            <StoreNav clientApp={true} items={storeType} />
+            <Sidebar clientApp={true} type={PAGE_TYPE} deviceType={deviceType} />
+            <OfferSection>
+              <div style={{ margin: '0 -10px' }}>
+                <Carousel deviceType={deviceType} data={OFFERS} />
+              </div>
+            </OfferSection>
+            <ContentSection style={{ width: '100%' }}>
+              <Products type={PAGE_TYPE} deviceType={deviceType} fetchLimit={16} clientApp={true} />
+            </ContentSection>
+          </MainContentArea>
+        )}
+        <CartPopUp deviceType={deviceType} />
+      </Modal>
+    </>
+  );
 }
 
 export default withRouter(withApollo(BagsPage));

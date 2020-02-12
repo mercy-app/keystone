@@ -24,9 +24,7 @@ function reducer(state: any, action: Action): any {
         return {
           ...state,
           contact: state.contact.map((item: any) =>
-            item.id === action.payload.id
-              ? { ...item, ...action.payload }
-              : item
+            item.id === action.payload.id ? { ...item, ...action.payload } : item
           ),
         };
       }
@@ -43,18 +41,14 @@ function reducer(state: any, action: Action): any {
     case 'DELETE_CONTACT':
       return {
         ...state,
-        contact: state.contact.filter(
-          (item: any) => item.id !== action.payload
-        ),
+        contact: state.contact.filter((item: any) => item.id !== action.payload),
       };
     case 'ADD_OR_UPDATE_ADDRESS':
       if (action.payload.id) {
         return {
           ...state,
           address: state.address.map((item: any) =>
-            item.id === action.payload.id
-              ? { ...item, ...action.payload }
-              : item
+            item.id === action.payload.id ? { ...item, ...action.payload } : item
           ),
         };
       }
@@ -70,9 +64,7 @@ function reducer(state: any, action: Action): any {
     case 'DELETE_ADDRESS':
       return {
         ...state,
-        address: state.address.filter(
-          (item: any) => item.id !== action.payload
-        ),
+        address: state.address.filter((item: any) => item.id !== action.payload),
       };
     case 'ADD_CARD':
       const newCard = {
@@ -95,36 +87,28 @@ function reducer(state: any, action: Action): any {
       return {
         ...state,
         contact: state.contact.map((item: any) =>
-          item.id === action.payload
-            ? { ...item, type: 'primary' }
-            : { ...item, type: 'secondary' }
+          item.id === action.payload ? { ...item, type: 'primary' } : { ...item, type: 'secondary' }
         ),
       };
     case 'SET_PRIMARY_ADDRESS':
       return {
         ...state,
         address: state.address.map((item: any) =>
-          item.id === action.payload
-            ? { ...item, type: 'primary' }
-            : { ...item, type: 'secondary' }
+          item.id === action.payload ? { ...item, type: 'primary' } : { ...item, type: 'secondary' }
         ),
       };
     case 'SET_PRIMARY_SCHEDULE':
       return {
         ...state,
         schedules: state.schedules.map((item: any) =>
-          item.id === action.payload
-            ? { ...item, type: 'primary' }
-            : { ...item, type: 'secondary' }
+          item.id === action.payload ? { ...item, type: 'primary' } : { ...item, type: 'secondary' }
         ),
       };
     case 'SET_PRIMARY_CARD':
       return {
         ...state,
         card: state.card.map((item: any) =>
-          item.id === action.payload
-            ? { ...item, type: 'primary' }
-            : { ...item, type: 'secondary' }
+          item.id === action.payload ? { ...item, type: 'primary' } : { ...item, type: 'secondary' }
         ),
       };
     default:
@@ -141,11 +125,7 @@ export const ProfileProvider: React.FunctionComponent<ProfileProviderProps> = ({
   initData,
 }) => {
   const [state, dispatch] = useReducer(reducer, { ...initData, schedules });
-  // console.log(state, 'profile provider state');
+  console.log(state, 'profile provider state');
 
-  return (
-    <ProfileContext.Provider value={{ state, dispatch }}>
-      {children}
-    </ProfileContext.Provider>
-  );
+  return <ProfileContext.Provider value={{ state, dispatch }}>{children}</ProfileContext.Provider>;
 };

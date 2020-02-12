@@ -3,6 +3,7 @@ import React from 'react';
 import Help from './pages/help';
 import OrderReceived from './pages/order-recived';
 import Bags from './pages/bags';
+import Profile from './pages/profile';
 
 import App from './app';
 export default {
@@ -14,6 +15,17 @@ export default {
         return (
           <App>
             <Help />
+          </App>
+        );
+      },
+    },
+    {
+      label: 'Profile',
+      path: 'profile',
+      component: () => {
+        return (
+          <App>
+            <Profile />
           </App>
         );
       },
