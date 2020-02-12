@@ -46,7 +46,12 @@ function BagsPage({ location }) {
         <title>Bags - PickBazar</title>
       </Head>*/}
       <Modal>
-        <Banner intlTitleId="bagsTitle" intlDescriptionId="bagsSubTitle" imageUrl={BannerImg} />
+        <Banner
+          clientApp={true}
+          intlTitleId="bagsTitle"
+          intlDescriptionId="bagsSubTitle"
+          imageUrl={BannerImg}
+        />
 
         {deviceType.desktop ? (
           <>
