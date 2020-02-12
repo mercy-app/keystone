@@ -36,7 +36,7 @@ const messages = {
   he: localIl,
 };
 
-export default function ExtendedApp({ Component, pageProps, query, userAgent }) {
+export default function ExtendedApp({ Component, pageProps, query, userAgent, pathname }) {
   const deviceType = useDeviceType(userAgent);
 
   return (
@@ -47,9 +47,13 @@ export default function ExtendedApp({ Component, pageProps, query, userAgent }) 
             <StickyProvider>
               <AuthProvider>
                 <>
-                  <AppLayout deviceType={deviceType}>
+                  {pathname === '/' ? (
                     <Component {...pageProps} deviceType={deviceType} />
-                  </AppLayout>
+                  ) : (
+                    <AppLayout deviceType={deviceType}>
+                      <Component {...pageProps} deviceType={deviceType} />
+                    </AppLayout>
+                  )}
                   <GlobalStyle />
                 </>
               </AuthProvider>
@@ -63,7 +67,7 @@ export default function ExtendedApp({ Component, pageProps, query, userAgent }) 
 
 ExtendedApp.getInitialProps = async appContext => {
   const appProps = await App.getInitialProps(appContext);
-  const { req, query } = appContext.ctx;
+  const { req, query, pathname } = appContext.ctx;
   const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-  return { ...appProps, userAgent, query };
+  return { ...appProps, userAgent, query, pathname };
 };

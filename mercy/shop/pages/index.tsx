@@ -1,129 +1,73 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { withApollo } from 'helper/apollo';
-import Banner from 'containers/Banner/Banner';
-import StoreNav from 'components/StoreNav/StoreNav';
-import Carousel from 'components/Carousel/Carousel';
-import Sidebar from 'containers/Sidebar/Sidebar';
-import Products from 'containers/Products/Products';
-import CartPopUp from 'containers/Cart/CartPopUp';
-import { openModal, Modal } from '@redq/reuse-modal';
-import LocationModal from 'containers/LocationModal/LocationModal';
-import { getCookie } from 'components/helpers/session';
-
+import Sticky from 'react-stickynode';
+import { ThemeProvider } from 'styled-components';
+import { interiorTheme } from 'common/src/theme/interior';
+import { DrawerProvider } from 'common/src/contexts/DrawerContext';
+import Navbar from 'landing/containers/Interior/Navbar/index-mercy';
+import Banner from 'landing/containers/Interior/Banner/index-mercy';
+import Feature from 'landing/containers/Interior/Feature';
+import AboutUs from 'landing/containers/Interior/AboutUs';
+import Project from 'landing/containers/Interior/Project';
+import Team from 'landing/containers/Interior/Team';
+import News from 'landing/containers/Interior/News';
+import Testimonial from 'landing/containers/Interior/Testimonial';
+import Gallery from 'landing/containers/Interior/Gallery';
+import Newsletter from 'landing/containers/Interior/Newsletter';
+import Footer from 'landing/containers/Interior/Footer';
+import { ResetCSS } from 'common/src/assets/css/style';
 import {
-  MainContentArea,
-  SidebarSection,
-  ContentSection,
-  OfferSection,
-  MobileCarouselDropdown,
-} from 'styled/pages.style';
-// Static Data Import Here
-import OFFERS from 'data/offers';
-import BannerImg from 'image/grocery.png';
+  GlobalStyle,
+  InteriorWrapper,
+  ContentWrapper,
+} from 'landing/containers/Interior/interior.style';
 
-import storeType from 'constants/storeType';
-
-const PAGE_TYPE = 'grocery';
-
-function HomePage({ deviceType }) {
-  const targetRef = React.useRef(null);
-  const { query } = useRouter();
-
-  React.useEffect(() => {
-    const modalTimer = setTimeout(() => {
-      if (!getCookie('zip_code') && !getCookie('first_visit')) {
-        openModal({
-          show: true,
-          overlayClassName: 'quick-view-overlay',
-          closeOnClickOutside: true,
-          component: LocationModal,
-          // closeComponent: "div",
-          config: {
-            enableResizing: false,
-            disableDragging: true,
-            className: 'quick-view-modal',
-            width: 458,
-            height: 'auto',
-          },
-        });
-      }
-    }, 1800);
-    return () => {
-      clearTimeout(modalTimer);
-    };
-  }, []);
-  React.useEffect(() => {
-    if ((query.text || query.category) && targetRef.current) {
-      window.scrollTo({
-        top: targetRef.current.offsetTop - 110,
-        behavior: 'smooth',
-      });
-    }
-  }, [query]);
-
+export default () => {
   return (
-    <>
-      <Head>
-        <title>PickBazar</title>
-      </Head>
-      <Modal>
-        <Banner
-          intlTitleId='groceriesTitle'
-          intlDescriptionId='groceriesSubTitle'
-          imageUrl={BannerImg}
-        />
+    <ThemeProvider theme={interiorTheme}>
+      <Fragment>
+        <Head>
+          <title>Interior | A react next landing page</title>
+          <meta name="theme-color" content="#171717" />
+          <meta name="description" content="React next landing page" />
+          <meta
+            name="keywords"
+            content="React, React js, Next, Next js, Gatsby, Gatsby Js, Fast Landing, Modren Landing"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Raleway:500,600&display=swap"
+            rel="stylesheet"
+          ></link>
+          <link
+            href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+            rel="stylesheet"
+          />
+        </Head>
+        <ResetCSS />
+        <GlobalStyle />
 
-        {deviceType.desktop ? (
-          <>
-            <MobileCarouselDropdown>
-              <StoreNav items={storeType} />
-              <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
-            </MobileCarouselDropdown>
-            <OfferSection>
-              <div style={{ margin: '0 -10px' }}>
-                <Carousel deviceType={deviceType} data={OFFERS} />
-              </div>
-            </OfferSection>
-            <MainContentArea>
-              <SidebarSection>
-                <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
-              </SidebarSection>
-              <ContentSection>
-                <div ref={targetRef}>
-                  <Products
-                    type={PAGE_TYPE}
-                    deviceType={deviceType}
-                    fetchLimit={16}
-                  />
-                </div>
-              </ContentSection>
-            </MainContentArea>
-          </>
-        ) : (
-          <MainContentArea>
-            <StoreNav items={storeType} />
-            <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
-            <OfferSection>
-              <div style={{ margin: '0px' }}>
-                <Carousel deviceType={deviceType} data={OFFERS} />
-              </div>
-            </OfferSection>
-            <ContentSection style={{ width: '100%' }}>
-              <Products
-                type={PAGE_TYPE}
-                deviceType={deviceType}
-                fetchLimit={16}
-              />
-            </ContentSection>
-          </MainContentArea>
-        )}
-
-        <CartPopUp deviceType={deviceType} />
-      </Modal>
-    </>
+        {/* Start writing your markup from here. */}
+        <InteriorWrapper>
+          <Sticky top={0} innerZ={9999} activeClass="sticky-nav-active">
+            <DrawerProvider>
+              <Navbar />
+            </DrawerProvider>
+          </Sticky>
+          <ContentWrapper>
+            <Banner />
+            {/*<Feature />
+            <AboutUs />
+            <Project />
+            <Team />
+            <News />
+            <Testimonial />
+            <Gallery />
+            <Newsletter />*/}
+          </ContentWrapper>
+          {/*<Footer />*/}
+        </InteriorWrapper>
+        {/* End of markup section. */}
+      </Fragment>
+    </ThemeProvider>
   );
-}
-
-export default withApollo(HomePage);
+};

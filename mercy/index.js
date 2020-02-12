@@ -37,8 +37,8 @@ const keystone = new Keystone({
   name: PROJECT_NAME,
   secureCookies: false,
   adapter: new Adapter({
-    mongoUri:
-      'mongodb+srv://admin:admin@cluster0-covhk.mongodb.net/test?retryWrites=true&w=majority',
+    // mongoUri:
+    //   'mongodb+srv://admin:admin@cluster0-covhk.mongodb.net/test?retryWrites=true&w=majority',
   }),
   onConnect: initializeData,
 });
