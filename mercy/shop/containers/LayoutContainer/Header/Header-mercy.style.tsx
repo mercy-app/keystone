@@ -50,8 +50,8 @@ const HeaderWrapper = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  background-color: #f7f7f7;
+  // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
   &.home {
     position: absolute;
@@ -92,9 +92,9 @@ const HeaderWrapper = styled.header`
   }
 
   &.sticky {
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     position: fixed;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
     padding-top: 20px;
     padding-bottom: 20px;
 

@@ -16,7 +16,7 @@ const StoreNav: React.FunctionComponent<StoreNavProps> = ({ className, items = [
         {items.map((item, index) => (
           <NavLink
             className="store-nav-link"
-            href={!clientApp ? item.link : item.link.substr(1)}
+            href={item.link}
             label={item.label}
             icon={item.icon}
             key={index}

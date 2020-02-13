@@ -15,6 +15,10 @@ import {
   FURNITURE_PAGE,
   BOOK_PAGE,
 } from 'constants/navigation';
+import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query-mercy';
+import { useQuery } from '@apollo/react-hooks';
+import UserImage from 'image/user.jpg';
+
 const MobileHeader = dynamic(() => import('./Header/MobileHeader-mercy'), {
   ssr: false,
 });
@@ -47,6 +51,11 @@ const Layout: FunctionComponent<LayoutProps> = ({
   token,
   clientApp,
 }) => {
+  const { data, error, loading } = useQuery(GET_LOGGED_IN_CUSTOMER);
+  if (!data || loading) {
+    return <div>loading...</div>;
+  }
+  if (error) return <div>{error.message}</div>;
   const isSticky = useStickyState('isSticky');
   let pathname;
   if (!clientApp) {
@@ -71,6 +80,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
           <MobileHeader
             className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''}`}
             pathname={pathname}
+            user={data.authenticatedUser}
           />
         </Sticky>
       )}
@@ -80,12 +90,14 @@ const Layout: FunctionComponent<LayoutProps> = ({
           <MobileHeader
             className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''} desktop`}
             pathname={pathname}
+            user={data.authenticatedUser}
           />
           <Header
             className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''}`}
             token={token}
             pathname={pathname}
             clientApp={clientApp}
+            user={data.authenticatedUser}
           />
         </Sticky>
       )}

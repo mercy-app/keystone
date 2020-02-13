@@ -6,6 +6,9 @@ export const GET_LOGGED_IN_CUSTOMER = gql`
       id
       name
       email
+      avatar {
+        publicUrl
+      }
       address {
         id
         type

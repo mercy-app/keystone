@@ -69,7 +69,7 @@ const NavLink: React.SFC<NavLinkProps> = ({
         </Link>
       ) : (
         <RRLink
-          to={href}
+          to={'/admin' + href}
           className={pathname === href ? ' current-page' : ''}
           style={{ display: 'flex', alignItems: 'center' }}
         >

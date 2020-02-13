@@ -26,7 +26,6 @@ const ProfilePage: React.FunctionComponent<Props> = () => {
   const deviceType = useDeviceType(window.navigator.userAgent);
 
   const { data, error, loading } = useQuery(GET_LOGGED_IN_CUSTOMER);
-  console.log(data);
   if (!data || loading) {
     return <div>loading...</div>;
   }

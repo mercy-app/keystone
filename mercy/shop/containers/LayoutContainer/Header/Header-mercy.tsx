@@ -67,6 +67,7 @@ type HeaderProps = {
   token: string;
   pathname: string;
   clientApp?: boolean;
+  user: any;
 };
 
 const MenuArray = [
@@ -134,7 +135,7 @@ const LanguageArray = [
   { id: 'es', label: 'Spanish', intlLangName: 'intlSpanish', icon: <ESFlag /> },
 ];
 
-const Header: React.FC<HeaderProps> = ({ style, className, token, pathname, clientApp }) => {
+const Header: React.FC<HeaderProps> = ({ style, className, token, pathname, clientApp, user }) => {
   const {
     state: { lang },
     toggleLanguage,
@@ -249,7 +250,7 @@ const Header: React.FC<HeaderProps> = ({ style, className, token, pathname, clie
       <HeaderWrapper style={style} className={className}>
         <HeaderLeftSide>
           <DrawerWrapper>
-            <MobileDrawer clientApp={clientApp} />
+            <MobileDrawer clientApp={clientApp} user={user} />
           </DrawerWrapper>
           {/*<Logo
           onClick={() =>
@@ -344,7 +345,7 @@ const Header: React.FC<HeaderProps> = ({ style, className, token, pathname, clie
             <Popover
               direction="right"
               className="user-pages-dropdown"
-              handler={<img src={UserImage} alt="user" />}
+              handler={<img src={user.avatar ? user.avatar.publicUrl : UserImage} alt="user" />}
               content={
                 <>
                   {DropDownMenuArray.map((item, idx) => {
@@ -353,7 +354,7 @@ const Header: React.FC<HeaderProps> = ({ style, className, token, pathname, clie
                         clientApp={clientApp}
                         key={idx}
                         className="menu-item"
-                        href={clientApp ? item.link : item.link.substr(1)}
+                        href={item.link}
                         label={item.label}
                         intlId={item.intlId}
                       />

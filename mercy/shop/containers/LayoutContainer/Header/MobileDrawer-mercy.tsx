@@ -145,7 +145,7 @@ const DrawerMenuItems = [
 //   },
 // ];
 
-const MobileDrawer: React.FunctionComponent<any> = ({ clientApp }) => {
+const MobileDrawer: React.FunctionComponent<any> = ({ clientApp, user }) => {
   const { state, dispatch } = useContext<any>(DrawerContext);
   const {
     authState: { isAuthenticated },
@@ -220,11 +220,10 @@ const MobileDrawer: React.FunctionComponent<any> = ({ clientApp }) => {
             {isAuthenticated ? (
               <LoginView>
                 <UserAvatar>
-                  <img src={UserImage} alt="user_avatar" />
+                  <img src={user.avatar ? user.avatar.publicUrl : UserImage} alt="user_avatar" />
                 </UserAvatar>
                 <UserDetails>
-                  <h3>David Kinderson</h3>
-                  <span>+990 374 987</span>
+                  <h3>{user.name}</h3>
                 </UserDetails>
               </LoginView>
             ) : (
