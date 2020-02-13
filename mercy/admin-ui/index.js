@@ -6,6 +6,7 @@ import Bags from './pages/bags';
 import Profile from './pages/profile';
 import Sites from './pages/sites';
 import Site from './pages/site';
+import Orders from './pages/orders';
 
 import App from './app';
 export default {
@@ -17,6 +18,17 @@ export default {
         return (
           <App>
             <Help />
+          </App>
+        );
+      },
+    },
+    {
+      label: 'Orders',
+      path: 'mercy/orders',
+      component: () => {
+        return (
+          <App>
+            <Orders />
           </App>
         );
       },
@@ -34,7 +46,7 @@ export default {
     },
     {
       label: 'Sites',
-      path: 'sites',
+      path: 'mercy/sites',
       component: () => {
         return (
           <App>
@@ -45,7 +57,7 @@ export default {
     },
     {
       label: 'Site',
-      path: 'sites/:site_id',
+      path: 'mercy/sites/:site_id',
       component: () => {
         return (
           <App>

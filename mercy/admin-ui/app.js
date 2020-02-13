@@ -25,6 +25,16 @@ import 'react-multi-carousel/lib/styles.css';
 import '@redq/reuse-modal/lib/index.css';
 import { GlobalStyle } from 'styled/global.style';
 import { withRouter } from 'react-router-dom';
+// import { useAdminMeta } from '@keystonejs/app-admin-ui/client';
+import { Query, KeystoneProvider } from '@keystonejs/apollo-helpers';
+import { ApolloProvider } from 'react-apollo';
+const client = new ApolloClient({
+  link: new HttpLink({ uri: 'http://localhost:3000/admin/api' }),
+  cache: new InMemoryCache(),
+});
+import { HttpLink } from 'apollo-link-http';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 // Language translation Config
 const messages = {
@@ -37,27 +47,34 @@ const messages = {
 };
 
 export default withRouter(({ children, location }) => {
+  console.log(location);
+  // let adminMeta = useAdminMeta();
+  // const list = adminMeta.getListByPath(listKey);
   const deviceType = useDeviceType(window.navigator.userAgent);
   const query = location.state ? location.state.query : getAllUrlParams();
   return (
-    <ThemeProvider theme={theme}>
-      <LanguageProvider messages={messages}>
-        <CartProvider>
-          <SearchProvider query={query}>
-            <StickyProvider>
-              <AuthProvider>
-                <>
-                  <AppLayout clientApp={true} deviceType={deviceType}>
-                    {children}
-                    {/*<Component {...pageProps} deviceType={deviceType} />*/}
-                  </AppLayout>
-                  <GlobalStyle />
-                </>
-              </AuthProvider>
-            </StickyProvider>
-          </SearchProvider>
-        </CartProvider>
-      </LanguageProvider>
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <KeystoneProvider>
+        <ThemeProvider theme={theme}>
+          <LanguageProvider messages={messages}>
+            <CartProvider>
+              <SearchProvider query={query}>
+                <StickyProvider>
+                  <AuthProvider>
+                    <>
+                      <AppLayout clientApp={true} deviceType={deviceType}>
+                        {children}
+                        {/*<Component {...pageProps} deviceType={deviceType} />*/}
+                      </AppLayout>
+                      <GlobalStyle />
+                    </>
+                  </AuthProvider>
+                </StickyProvider>
+              </SearchProvider>
+            </CartProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+      </KeystoneProvider>
+    </ApolloProvider>
   );
 });
