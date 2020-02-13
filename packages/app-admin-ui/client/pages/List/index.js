@@ -94,7 +94,7 @@ export function ListLayout(props) {
 
   const Render = ({ children }) => children();
   return (
-    <main>
+    <main style={{ paddingTop: '80px' }}>
       <div ref={measureElementRef} />
 
       <Container isFullWidth>

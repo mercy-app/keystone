@@ -136,10 +136,10 @@ const HeaderWrapper = styled.header`
             border-bottom: 0;
           }
           &:hover {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#171717')};
           }
           &.current-page {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#171717')};
           }
 
           .menu-item-icon {
@@ -204,10 +204,10 @@ export const HeaderRightSide = styled.div`
         font-size: 15px;
       }
       &:hover {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#171717')};
       }
       &.current-page {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#171717')};
       }
     }
   }
@@ -297,10 +297,10 @@ export const MainMenu = styled.div`
           }
 
           &:hover {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#171717')};
           }
           &.current-page {
-            color: ${themeGet('colors.primary', '#009E7F')};
+            color: ${themeGet('colors.primary', '#171717')};
             background-color: #fff;
           }
         }
@@ -338,7 +338,7 @@ export const SelectedType = styled.button`
     font-family: 'Lato', sans-serif;
     font-size: ${themeGet('fontSizes.2', '15')}px;
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     text-decoration: none;
 
     &:first-child {
@@ -372,7 +372,7 @@ export const SelectedLang = styled.button`
     font-family: 'Lato', sans-serif;
     font-size: ${themeGet('fontSizes.2', '15')}px;
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     text-decoration: none;
 
     &:first-child {
@@ -464,7 +464,7 @@ export const HamburgerIcon = styled.div`
 
 export const DrawerContentWrapper = styled.div`
   padding-top: 60px;
-  background-color: #121212;
+  background-color: #171717;
 `;
 
 export const DrawerClose = styled.div`
@@ -487,22 +487,22 @@ export const DrawerProfile = styled.div`
 					background: -webkit-linear-gradient(
 						110deg,
 						gold 60%,
-						#121212 60%
+						#171717 60%
 					);
 					background: -o-linear-gradient(
 						110deg,
 						gold 60%,
-						#121212 60%
+						#171717 60%
 					);
 					background: -moz-linear-gradient(
 						110deg,
 						gold 60%,
-						#121212 60%
+						#171717 60%
 					);
 					background: linear-gradient(
 						110deg,
 						gold 60%,
-						#121212 60%
+						#171717 60%
 					);
 					// background-color: ${themeGet('colors.lightColor', '#F7F7F7')};
 					padding: 45px;
@@ -604,7 +604,7 @@ export const DrawerMenuItem = styled.div`
 			transition: 0.15s ease-in-out;
 
 			&:hover {
-				color: ${themeGet('colors.primary', '#009E7F')};
+				color: ${themeGet('colors.primary', '#171717')};
 			}
 			&:before {
 				content: '';
@@ -617,10 +617,10 @@ export const DrawerMenuItem = styled.div`
 				background: transparent;
 			}
 			&.current-page {
-				color: ${themeGet('colors.primary', '#009E7F')};
+				color: ${themeGet('colors.primary', '#171717')};
 				font-weight: 700;
 				&:before {
-					background-color: ${themeGet('colors.primary', '#009E7F')};
+					background-color: ${themeGet('colors.primary', '#171717')};
 				}
 			}
 		}

@@ -13,6 +13,7 @@ import { ListProvider } from '@keystonejs/app-admin-ui/components';
 function SitePage(props) {
   let adminMeta = useAdminMeta();
   const list = adminMeta.getListByPath('orders');
+  console.log(list);
   if (list) {
     return (
       <ListProvider list={list}>

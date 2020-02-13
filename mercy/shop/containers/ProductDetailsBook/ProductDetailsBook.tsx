@@ -58,10 +58,7 @@ type ProdutDetailsProps = {
   };
 };
 
-const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
-  product,
-  deviceType,
-}) => {
+const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({ product, deviceType }) => {
   const { add, update, products } = useContext(CartContext);
   const data = product;
   const index = findProductIndex(products, data.id);
@@ -72,8 +69,7 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
     e.preventDefault();
     // scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     window.scrollTo({
-      top:
-        scrollRef.current.getBoundingClientRect().top + window.pageYOffset - 65,
+      top: scrollRef.current.getBoundingClientRect().top + window.pageYOffset - 65,
       behavior: 'smooth',
     });
   };
@@ -99,14 +95,14 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
 
   return (
     <>
-      <ProductDetailsWrapper className='product-card'>
+      <ProductDetailsWrapper className="product-card">
         <ProductPreview>
           <BackButton>
             <Button
-              title='Back'
-              intlButtonId='backBtn'
-              iconPosition='left'
-              size='small'
+              title="Back"
+              intlButtonId="backBtn"
+              iconPosition="left"
+              size="small"
               style={{
                 backgroundColor: '#ffffff',
                 border: '1px solid #f1f1f1',
@@ -117,11 +113,7 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
             />
           </BackButton>
 
-          <img
-            src={product.gallery[0].url}
-            alt={product.title}
-            className='product-image'
-          />
+          <img src={product.gallery[0].url} alt={product.title} className="product-image" />
         </ProductPreview>
 
         <ProductInfo>
@@ -132,11 +124,7 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
           <BookDescriptionWrapper>
             <BookDescription>
               {product.description.substring(0, 600)}
-              <a
-                href='#'
-                onClick={scrollToDiv}
-                style={{ color: '#009e7f', fontWeight: 700 }}
-              >
+              <a href="#" onClick={scrollToDiv} style={{ color: '#171717', fontWeight: 700 }}>
                 Read More
               </a>
             </BookDescription>
@@ -147,9 +135,7 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
                       <BookMetaTableRow key={i}>
                         <BookMetaItem>
                           {item.replace(/^[a-z]|[A-Z]/g, function(v, i) {
-                            return i === 0
-                              ? v.toUpperCase()
-                              : ' ' + v.toLowerCase();
+                            return i === 0 ? v.toUpperCase() : ' ' + v.toLowerCase();
                           })}
                         </BookMetaItem>
                         <BookMetaItem>
@@ -191,11 +177,11 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
             <ProductCartBtn>
               {quantity <= 0 ? (
                 <Button
-                  title='Add to Cart'
-                  intlButtonId='addToCartButton'
-                  iconPosition='left'
-                  size='small'
-                  className='cart-button'
+                  title="Add to Cart"
+                  intlButtonId="addToCartButton"
+                  iconPosition="left"
+                  size="small"
+                  className="cart-button"
                   icon={<CartIcon />}
                   onClick={e => handleClick(e)}
                 />
@@ -211,12 +197,12 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
 
               {product.meta && product.meta.samplePDF.length !== 0 ? (
                 <Button
-                  title='Read Free Sample'
-                  intlButtonId='readFreeSampleButton'
-                  iconPosition='left'
-                  size='small'
-                  variant='outlined'
-                  className='outline-button'
+                  title="Read Free Sample"
+                  intlButtonId="readFreeSampleButton"
+                  iconPosition="left"
+                  size="small"
+                  variant="outlined"
+                  className="outline-button"
                   icon={<AdobeIcon />}
                 />
               ) : (
@@ -229,10 +215,7 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
             <MetaSingle>
               {product.categories
                 ? product.categories.map((item: any) => (
-                    <Link
-                      href={`/${product.type}?category=${item.slug}`}
-                      key={`link-${item.id}`}
-                    >
+                    <Link href={`/${product.type}?category=${item.slug}`} key={`link-${item.id}`}>
                       {
                         <a>
                           <MetaItem>{item.title}</MetaItem>
@@ -248,20 +231,14 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
 
       <DetailsWrapper ref={scrollRef}>
         <DetailsTitle>
-          <FormattedMessage
-            id='bookSectionTitle'
-            defaultMessage='About The Book'
-          />
+          <FormattedMessage id="bookSectionTitle" defaultMessage="About The Book" />
         </DetailsTitle>
         <Description>{product.description}</Description>
       </DetailsWrapper>
 
       <DetailsWrapper>
         <DetailsTitle>
-          <FormattedMessage
-            id='authorSectionTitle'
-            defaultMessage='About The Author'
-          />
+          <FormattedMessage id="authorSectionTitle" defaultMessage="About The Author" />
         </DetailsTitle>
         <AuthorName>
           {product.author.avatar && product.author.avatar.length !== 0 ? (
@@ -281,15 +258,15 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
             product.author.socials.map(item =>
               item.profileLink.length !== 0 ? (
                 <SocialIcon>
-                  <a key={item.id} href={item.profileLink} target='_blank'>
+                  <a key={item.id} href={item.profileLink} target="_blank">
                     {item.media === 'facebook' ? (
-                      <Facebook color='#3b5999' />
+                      <Facebook color="#3b5999" />
                     ) : item.media === 'twitter' ? (
-                      <Twitter color='#55acee' />
+                      <Twitter color="#55acee" />
                     ) : item.media === 'google' ? (
-                      <GooglePlus color='#dd4b39' />
+                      <GooglePlus color="#dd4b39" />
                     ) : item.media === 'linkedin' ? (
-                      <Linkedin color='#0077B5' />
+                      <Linkedin color="#0077B5" />
                     ) : (
                       ''
                     )}
@@ -304,10 +281,7 @@ const ProductDetails: React.FunctionComponent<ProdutDetailsProps> = ({
 
       <RelatedItems>
         <h2>
-          <FormattedMessage
-            id='intlReletedItems'
-            defaultMessage='Related Items'
-          />
+          <FormattedMessage id="intlReletedItems" defaultMessage="Related Items" />
         </h2>
         <Products
           type={product.type.toLowerCase()}

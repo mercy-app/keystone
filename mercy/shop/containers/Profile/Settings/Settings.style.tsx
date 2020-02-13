@@ -104,7 +104,7 @@ const ButtonGroup = styled.div`
     margin-left: 0;
     margin-right: auto;
     &:hover {
-      border-color: ${themeGet('colors.primary', '#009E7F')};
+      border-color: ${themeGet('colors.primary', '#171717')};
     }
 
     @media (max-width: 700px) {
@@ -118,12 +118,4 @@ const ButtonGroup = styled.div`
     }
   }
 `;
-export {
-  SettingsForm,
-  HeadingSection,
-  Title,
-  SettingsFormContent,
-  Input,
-  Row,
-  ButtonGroup,
-};
+export { SettingsForm, HeadingSection, Title, SettingsFormContent, Input, Row, ButtonGroup };

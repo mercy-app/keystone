@@ -39,7 +39,7 @@ const Input = styled.input`
   }
 
   &:focus {
-    border-color: ${themeGet('colors.primary', '#009e7f')};
+    border-color: ${themeGet('colors.primary', '#171717')};
   }
 
   &::placeholder {
@@ -69,7 +69,7 @@ const TextField: React.FC<Props & any> = ({
   return (
     <FieldWrapper>
       {label && (
-        <label className='label' htmlFor={id}>
+        <label className="label" htmlFor={id}>
           {label}
         </label>
       )}

@@ -133,7 +133,7 @@ export const ProductPrice = styled.div`
   font-family: 'Lato', sans-serif;
   font-size: ${themeGet('fontSizes.3', '19')}px;
   font-weight: ${themeGet('fontWeights.6', '700')};
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#171717')};
 `;
 
 export const SalePrice = styled.span`
@@ -165,7 +165,7 @@ export const ProductCartBtn = styled.div`
     font-family: 'Lato', sans-serif;
     font-size: ${themeGet('fontSizes.2', '15')}px;
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     height: 36px;
     border-radius: 4rem;
 
@@ -175,8 +175,8 @@ export const ProductCartBtn = styled.div`
 
     &:hover {
       color: #fff;
-      background-color: ${themeGet('colors.primary', '#009E7F')};
-      border-color: ${themeGet('colors.primary', '#009E7F')};
+      background-color: ${themeGet('colors.primary', '#171717')};
+      border-color: ${themeGet('colors.primary', '#171717')};
     }
   }
 `;

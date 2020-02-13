@@ -25,11 +25,7 @@ const ReadMore = ({ children, more, less, character }) => {
         <>
           <br />
           <span>
-            <a
-              href="#"
-              onClick={toggleLines}
-              style={{ color: '#009e7f', fontWeight: 700 }}
-            >
+            <a href="#" onClick={toggleLines} style={{ color: '#171717', fontWeight: 700 }}>
               {more}
             </a>
           </span>
@@ -39,11 +35,7 @@ const ReadMore = ({ children, more, less, character }) => {
         <>
           <br />
           <span>
-            <a
-              href="#"
-              onClick={toggleLines}
-              style={{ color: '#009e7f', fontWeight: 700 }}
-            >
+            <a href="#" onClick={toggleLines} style={{ color: '#171717', fontWeight: 700 }}>
               {less}
             </a>
           </span>

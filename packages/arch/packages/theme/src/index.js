@@ -14,7 +14,7 @@ export const borderRadius = 6;
 export const gridSize = 8;
 export const fontSize = 16;
 
-import colors from './colors';
+import colors from './colors-mercy';
 export { shadows } from './shadows';
 
 export { colors };

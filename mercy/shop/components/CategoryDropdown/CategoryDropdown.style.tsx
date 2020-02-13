@@ -25,7 +25,7 @@ const CategoryDropdownWrapper = styled.div`
         padding: 3px 0;
         transition: 0.15s ease-in-out;
         &:hover {
-          color: ${themeGet('colors.primary', '#009E7F')};
+          color: ${themeGet('colors.primary', '#171717')};
         }
         svg {
           margin-right: 15px;
@@ -40,13 +40,13 @@ const CategoryDropdownWrapper = styled.div`
       }
       &.rc-collapse-item-active {
         .rc-collapse-header {
-          color: ${themeGet('colors.primary', '#009E7F')};
+          color: ${themeGet('colors.primary', '#171717')};
         }
       }
 
       &.dropdown-active {
         .rc-collapse-header {
-          color: ${themeGet('colors.primary', '#009E7F')};
+          color: ${themeGet('colors.primary', '#171717')};
         }
       }
       .rc-collapse-content {
@@ -68,7 +68,7 @@ const CategoryDropdownWrapper = styled.div`
 
             &:hover,
             &.current-page {
-              color: ${themeGet('colors.primary', '#009E7F')};
+              color: ${themeGet('colors.primary', '#171717')};
             }
             @media (max-width: 990px) {
               margin-top: 13px;
@@ -116,7 +116,7 @@ export const Title = styled.div`
   cursor: pointer;
   &:hover,
   &.active {
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
   }
 
   @media (max-width: 990px) {
@@ -135,7 +135,7 @@ export const Dropdown = styled.div`
 
   &.open {
     > ${Title} {
-      color: ${themeGet('colors.primary', '#009E7F')};
+      color: ${themeGet('colors.primary', '#171717')};
     }
   }
 `;
@@ -159,7 +159,7 @@ export const Content = styled(animated.div)`
 
     &:hover,
     &.active {
-      color: ${themeGet('colors.primary', '#009E7F')};
+      color: ${themeGet('colors.primary', '#171717')};
     }
     @media (max-width: 990px) {
       margin-top: 13px;

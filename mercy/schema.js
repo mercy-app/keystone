@@ -455,6 +455,13 @@ exports.Order = {
       many: true,
     },
   },
+  access: {
+    create: access.userIsAdmin,
+    read: access.userIsAdminOrOwner,
+    update: access.userIsAdminOrOwner,
+    delete: access.userIsAdminOrOwner,
+    auth: true,
+  },
   plugins: [atTracking(), createdAt(), updatedAt()],
   // labelResolver: item => item.title
 };

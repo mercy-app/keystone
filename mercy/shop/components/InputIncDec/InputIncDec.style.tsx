@@ -5,7 +5,7 @@ const InputIncDecWrapper = styled.div`
   width: 104px;
   height: 36px;
   border-radius: 50px;
-  background-color: ${themeGet('colors.primary', '#009E7F')};
+  background-color: ${themeGet('colors.primary', '#171717')};
   display: flex;
   align-items: center;
   position: relative;

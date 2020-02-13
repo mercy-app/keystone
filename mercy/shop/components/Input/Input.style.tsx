@@ -51,7 +51,7 @@ const InputWrapper = styled.div`
       }
 
       &:focus {
-        border-color: ${themeGet('colors.primary', '#009e7f')};
+        border-color: ${themeGet('colors.primary', '#171717')};
       }
 
       &::placeholder {
@@ -134,7 +134,7 @@ export const VerifiedLabel = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: ${themeGet('colors.primary', '#009e7f')};
+  color: ${themeGet('colors.primary', '#171717')};
   font-size: 12px;
   font-weight: 400;
   text-transform: capitalize;

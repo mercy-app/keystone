@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { themeGet } from "@styled-system/theme-get";
-import Inputs from "../Input/Input";
-import Buttons from "../Button/Button";
+import styled from 'styled-components';
+import { themeGet } from '@styled-system/theme-get';
+import Inputs from '../Input/Input';
+import Buttons from '../Button/Button';
 
 export const Button = styled(Buttons)`
   height: calc(100% - 10px);
@@ -15,8 +15,8 @@ export const Input = styled(Inputs)`
       input {
         height: 100%;
         flex-grow: 1;
-        font-size: ${themeGet("fontSizes.2", "14")}px;
-        color: ${themeGet("colorsdarkRegular", "#77798C")};
+        font-size: ${themeGet('fontSizes.2', '14')}px;
+        color: ${themeGet('colorsdarkRegular', '#77798C')};
         border: none;
         border-radius: 0;
         padding: 0 20px;
@@ -28,22 +28,22 @@ export const Input = styled(Inputs)`
         }
 
         &::-webkit-input-placeholder {
-          font-size: ${themeGet("fontSizes.2", "14")}px;
-          color: ${themeGet("colors.labelColor", "#8c8c8c")};
+          font-size: ${themeGet('fontSizes.2', '14')}px;
+          color: ${themeGet('colors.labelColor', '#8c8c8c')};
         }
 
         &:-moz-placeholder {
-          font-size: ${themeGet("fontSizes.2", "14")}px;
-          color: ${themeGet("colors.labelColor", "#8c8c8c")};
+          font-size: ${themeGet('fontSizes.2', '14')}px;
+          color: ${themeGet('colors.labelColor', '#8c8c8c')};
         }
 
         &::-moz-placeholder {
-          font-size: ${themeGet("fontSizes.2", "14")}px;
-          color: ${themeGet("colors.labelColor", "#8c8c8c")};
+          font-size: ${themeGet('fontSizes.2', '14')}px;
+          color: ${themeGet('colors.labelColor', '#8c8c8c')};
         }
         &:-ms-input-placeholder {
-          font-size: ${themeGet("fontSizes.2", "14")}px;
-          color: ${themeGet("colors.labelColor", "#8c8c8c")};
+          font-size: ${themeGet('fontSizes.2', '14')}px;
+          color: ${themeGet('colors.labelColor', '#8c8c8c')};
         }
       }
     }
@@ -72,21 +72,21 @@ export const Display = styled.div`
 `;
 
 export const CouponCode = styled.span`
-  font-size: ${themeGet("fontSizes.2", "14")}px;
-  color: ${themeGet("colors.primary", "#009E7F")};
+  font-size: ${themeGet('fontSizes.2', '14')}px;
+  color: ${themeGet('colors.primary', '#171717')};
   font-weight: 700;
   text-transform: uppercase;
 `;
 
 export const DiscountPrice = styled.span`
-  font-size: ${themeGet("fontSizes.2", "14")}px;
-  color: ${themeGet("colors.primary", "#009E7F")};
+  font-size: ${themeGet('fontSizes.2', '14')}px;
+  color: ${themeGet('colors.primary', '#171717')};
   font-weight: 700;
   margin-left: auto;
 `;
 
 export const CancelBtn = styled.button`
-  color: ${themeGet("colors.secondary", "#ff5b60")};
+  color: ${themeGet('colors.secondary', '#ff5b60')};
   width: 20px;
   height: 20px;
   display: flex;

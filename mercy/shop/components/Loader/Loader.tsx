@@ -10,8 +10,8 @@ const Spinner = styled.div`
   width: 24px;
   height: 24px;
   border: 4px solid #ffffff;
-  /* border-top: 4px solid #009e7f; */
-  border-top: 3px solid ${props => (props.color ? props.color : '#009e7f')};
+  /* border-top: 4px solid #171717; */
+  border-top: 3px solid ${props => (props.color ? props.color : '#171717')};
   border-radius: 50%;
   transition-property: transform;
   animation-name: ${rotate};

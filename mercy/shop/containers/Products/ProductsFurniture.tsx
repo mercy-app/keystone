@@ -23,20 +23,8 @@ import NoResultFound from 'components/NoResult/NoResult';
 const QuickView = dynamic(() => import('../QuickView/QuickView'));
 
 const GET_PRODUCTS = gql`
-  query getProducts(
-    $type: String
-    $text: String
-    $category: String
-    $offset: Int
-    $limit: Int
-  ) {
-    products(
-      type: $type
-      text: $text
-      category: $category
-      offset: $offset
-      limit: $limit
-    ) {
+  query getProducts($type: String, $text: String, $category: String, $offset: Int, $limit: Int) {
+    products(type: $type, text: $text, category: $category, offset: $offset, limit: $limit) {
       items {
         id
         title
@@ -181,18 +169,12 @@ export const Products: React.FC<ProductsProps> = ({
         {data.products.items.map((item: any, index: number) => (
           <ProductsCol key={index}>
             <ProductCardWrapper>
-              <Fade
-                duration={800}
-                delay={index * 10}
-                style={{ height: '100%' }}
-              >
+              <Fade duration={800} delay={index * 10} style={{ height: '100%' }}>
                 <ProductCard
                   title={item.title}
                   image={item.gallery[0].url}
                   discountInPercent={item.discountInPercent}
-                  onClick={() =>
-                    handleQuickViewModal(item, deviceType, handleModalClose)
-                  }
+                  onClick={() => handleQuickViewModal(item, deviceType, handleModalClose)}
                 />
               </Fade>
             </ProductCardWrapper>
@@ -203,16 +185,16 @@ export const Products: React.FC<ProductsProps> = ({
         <ButtonWrapper>
           <Button
             onClick={handleLoadMore}
-            title='Load More'
-            size='small'
+            title="Load More"
+            size="small"
             isLoading={loadingMore}
-            intlButtonId='loadMoreBtn'
-            loader={<Loader color='#009E7F' />}
+            intlButtonId="loadMoreBtn"
+            loader={<Loader color="#171717" />}
             style={{
               minWidth: 135,
               backgroundColor: '#ffffff',
               border: '1px solid #f1f1f1',
-              color: '#009E7F',
+              color: '#171717',
             }}
           />
         </ButtonWrapper>

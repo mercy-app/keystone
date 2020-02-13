@@ -44,7 +44,7 @@ const CarouselWithCustomDots = ({
         key={index}
         alt={title}
         style={{ minWidth: 'auto', height: 'auto', position: 'relative' }}
-        className='product-image'
+        className="product-image"
       />
     ));
   const images = items.map((item: any, index: number) => (
@@ -76,7 +76,7 @@ const CarouselWithCustomDots = ({
       }
 
       &.custom-dot--active {
-        border: 2px solid ${themeGet('colors.primary', '#009E7F')};
+        border: 2px solid ${themeGet('colors.primary', '#171717')};
       }
     `;
 
@@ -104,7 +104,7 @@ const CarouselWithCustomDots = ({
       ssr
       infinite={true}
       slidesToSlide={1}
-      containerClass='carousel-with-custom-dots'
+      containerClass="carousel-with-custom-dots"
       responsive={responsive}
       deviceType={deviceType}
       autoPlay={false}

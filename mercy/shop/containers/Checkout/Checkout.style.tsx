@@ -170,7 +170,7 @@ export const ButtonGroup = styled.div`
     margin-left: 0;
     margin-right: auto;
     &:hover {
-      border-color: ${themeGet('colors.primary', '#009e7f')};
+      border-color: ${themeGet('colors.primary', '#171717')};
     }
 
     @media (max-width: 700px) {
@@ -223,7 +223,7 @@ export const PaymentCardList = styled.div`
       opacity: 0;
       &:checked {
         & ~ .payment-card {
-          border-color: ${themeGet('colors.primary', '#009e7f')};
+          border-color: ${themeGet('colors.primary', '#171717')};
         }
       }
     }
@@ -241,7 +241,7 @@ export const SavedCard = styled.div`
     font-family: 'Lato', sans-serif;
     font-size: ${themeGet('fontSizes.1', '13')}px;
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009e7f')};
+    color: ${themeGet('colors.primary', '#171717')};
     margin-bottom: 10px;
     display: block;
   }
@@ -268,7 +268,7 @@ export const AddCard = styled.div`
       margin-bottom: 5px;
     }
     &:hover {
-      border-color: ${themeGet('colors.primary', '#009e7f')};
+      border-color: ${themeGet('colors.primary', '#171717')};
     }
   }
   .safe-label {
@@ -317,7 +317,7 @@ export const OtherPayOption = styled.div`
       opacity: 0;
       &:checked {
         & ~ span {
-          border-color: ${themeGet('colors.primary', '#009e7f')};
+          border-color: ${themeGet('colors.primary', '#171717')};
           background-color: #ffffff;
         }
       }
@@ -362,7 +362,7 @@ export const AddcontactWrapper = styled.div`
       margin-right: 5px;
     }
     &:hover {
-      border-color: ${themeGet('colors.primary', '#009e7f')};
+      border-color: ${themeGet('colors.primary', '#171717')};
     }
   }
 `;
@@ -489,7 +489,7 @@ export const CouponCode = styled.p`
 
   span {
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     margin-left: 5px;
   }
 `;

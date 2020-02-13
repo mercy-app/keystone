@@ -48,16 +48,9 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
       onSubmit={handleSubmit}
       validationSchema={ContactValidationSchema}
     >
-      {({
-        values,
-        handleChange,
-        handleBlur,
-        isSubmitting,
-      }: FormikProps<FormValues>) => (
+      {({ values, handleChange, handleBlur, isSubmitting }: FormikProps<FormValues>) => (
         <Form>
-          <Heading>
-            {item && item.id ? 'Edit Contact' : 'Add New Contact'}
-          </Heading>
+          <Heading>{item && item.id ? 'Edit Contact' : 'Add New Contact'}</Heading>
           <FieldWrapper>
             <MaskedInput
               mask={[
@@ -76,26 +69,24 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
                 /\d/,
                 /\d/,
               ]}
-              className='form-control'
-              placeholder='Enter a phone number'
+              className="form-control"
+              placeholder="Enter a phone number"
               guide={false}
-              id='my-input-id'
+              id="my-input-id"
               value={values.number}
               onChange={handleChange}
               onBlur={handleBlur}
-              name='number'
-              render={(ref: any, props: {}) => (
-                <StyledInput ref={ref} {...props} />
-              )}
+              name="number"
+              render={(ref: any, props: {}) => <StyledInput ref={ref} {...props} />}
             />
           </FieldWrapper>
-          <ErrorMessage name='number' component={StyledError} />
+          <ErrorMessage name="number" component={StyledError} />
 
           <Button
             disabled={isSubmitting}
-            type='submit'
-            title='Save Contact'
-            size='medium'
+            type="submit"
+            title="Save Contact"
+            size="medium"
             fullwidth={true}
           />
         </Form>
@@ -126,7 +117,7 @@ const StyledInput = styled.input`
   }
 
   &:focus {
-    border-color: ${themeGet('colors.primary', '#009e7f')};
+    border-color: ${themeGet('colors.primary', '#171717')};
   }
 
   &::placeholder {

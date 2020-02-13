@@ -217,7 +217,7 @@ export const ProductPrice = styled.div`
   font-family: 'Lato', sans-serif;
   font-size: ${themeGet('fontSizes.3', '19')}px;
   font-weight: ${themeGet('fontWeights.6', '700')};
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#171717')};
 `;
 
 export const SalePrice = styled.span`
@@ -276,10 +276,10 @@ export const ProductCartBtn = styled.div`
       }
 
       &:hover {
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#171717')};
 
         svg {
-          color: ${themeGet('colors.primary', '#009E7F')};
+          color: ${themeGet('colors.primary', '#171717')};
         }
       }
     }

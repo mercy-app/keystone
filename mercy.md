@@ -61,3 +61,7 @@ Keystone
 ### app-admin-ui customizations
 
 1. remove `Nav` component from `packages/app-admin-ui/client/index` to remove the sidebars in admin page.
+
+### arch ui customizations
+
+we have a customized globalstyles in arch ui package `packages/arch/packages/theme/src/colors-mercy.js`

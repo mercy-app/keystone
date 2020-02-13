@@ -118,7 +118,7 @@ export const SiteInfo = styled.div`
         font-family: 'Lato', sans-serif;
         font-size: ${themeGet('fontSizes.2', '15')}px;
         font-weight: ${themeGet('fontWeights.6', '700')};
-        color: ${themeGet('colors.primary', '#009E7F')};
+        color: ${themeGet('colors.primary', '#171717')};
 
         @media (max-width: 767px) {
           font-size: 14px;
@@ -173,8 +173,8 @@ export const SiteInfo = styled.div`
       }
       &:hover {
         color: #fff;
-        background-color: #009e7f;
-        border-color: #009e7f;
+        background-color: #171717;
+        border-color: #171717;
       }
       svg {
         fill: currentColor;
@@ -328,8 +328,8 @@ export const AddCartBox = styled.div`
     }
     &:hover {
       color: #fff;
-      background-color: #009e7f;
-      border-color: #009e7f;
+      background-color: #171717;
+      border-color: #171717;
     }
     svg {
       fill: currentColor;
@@ -349,7 +349,7 @@ export const Price = styled.span`
   font-family: 'Lato', sans-serif;
   font-size: ${themeGet('fontSizes.2', '15')} px;
   font-weight: ${themeGet('fontWeights.6', '700')};
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#171717')};
 
   @media (max-width: 767px) {
     font-size: 14px;

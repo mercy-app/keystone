@@ -14,7 +14,7 @@ export const Wrapper = styled.label`
     opacity: 0;
     &:checked {
       & ~ .payment-card {
-        border-color: #009e7f;
+        border-color: #171717;
       }
     }
   }

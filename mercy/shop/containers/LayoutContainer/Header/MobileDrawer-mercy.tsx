@@ -39,14 +39,14 @@ const DrawerMenuItems = [
     id: 1,
     intlLabelId: 'sideBarSites',
     label: 'Sites',
-    href: '/sites',
+    href: '/mercy/sites',
     color: ['#E74B3C', '#C0382B'],
   },
   {
     id: 2,
     intlLabelId: 'sideBarOrders',
     label: 'Orders',
-    href: '/orders',
+    href: '/mercy/orders',
     color: ['#E67E22', '#D35400'],
   },
   {

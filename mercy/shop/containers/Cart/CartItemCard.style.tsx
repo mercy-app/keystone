@@ -31,13 +31,13 @@ const PopupHeader = styled.div`
 const PopupItemCount = styled.div`
   display: inline-flex;
   align-items: center;
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#171717')};
 
   span {
     font-family: 'Lato', sans-serif;
     font-size: ${themeGet('fontSizes.2', '15')}px;
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     padding-left: 10px;
 
     @media (max-width: 767px) {
@@ -131,7 +131,7 @@ const ItemPrice = styled.span`
   font-family: 'Lato', sans-serif;
   font-size: ${themeGet('fontSizes.2', '15')}px;
   font-weight: ${themeGet('fontWeights.6', '700')};
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#171717')};
   margin-bottom: 10px;
 `;
 
@@ -187,7 +187,7 @@ const PromoCode = styled.span`
     font-family: 'Lato', sans-serif;
     font-size: ${themeGet('fontSizes.2', '15')}px;
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     transition: color 0.35s ease;
     &:hover {
       color: ${themeGet('colors.primaryHover', '#008466')};
@@ -201,7 +201,7 @@ const CheckoutButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${themeGet('colors.primary', '#009E7F')};
+  background-color: ${themeGet('colors.primary', '#171717')};
   padding: 0;
   border-radius: 48px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -254,7 +254,7 @@ const PriceBox = styled.span`
   font-family: 'Lato', sans-serif;
   font-size: ${themeGet('fontSizes.2', '15')}px;
   font-weight: ${themeGet('fontWeights.6', '700')};
-  color: ${themeGet('colors.primary', '#009E7F')};
+  color: ${themeGet('colors.primary', '#171717')};
   margin-right: 2px;
 
   @media (max-width: 767px) {
@@ -292,7 +292,7 @@ const CouponCode = styled.p`
 
   span {
     font-weight: ${themeGet('fontWeights.6', '700')};
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     margin-left: 5px;
   }
 `;

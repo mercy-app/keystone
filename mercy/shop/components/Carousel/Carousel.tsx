@@ -13,7 +13,7 @@ const PrevButton = ({ onClick, children }: any) => {
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     padding: 0;
     border-radius: 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -33,7 +33,7 @@ const PrevButton = ({ onClick, children }: any) => {
         e.preventDefault();
         onClick();
       }}
-      className='prevButton'
+      className="prevButton"
     >
       {children}
     </ButtonPrev>
@@ -47,7 +47,7 @@ const NextButton = ({ onClick, children }: any) => {
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    color: ${themeGet('colors.primary', '#009E7F')};
+    color: ${themeGet('colors.primary', '#171717')};
     padding: 0;
     border-radius: 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -67,7 +67,7 @@ const NextButton = ({ onClick, children }: any) => {
         e.preventDefault();
         onClick();
       }}
-      className='nextButton'
+      className="nextButton"
     >
       {children}
     </ButtonNext>
@@ -89,7 +89,7 @@ const ButtonGroup = ({ next, previous, isRtl = false }: any) => {
           false
         )) ? (
           <>
-            <NextButton onClick={() => next()} className='rtl'>
+            <NextButton onClick={() => next()} className="rtl">
               <ArrowPrev />
             </NextButton>
             <PrevButton onClick={() => previous()}>
@@ -163,7 +163,7 @@ export default function CustomCarousel({
     deviceType = 'tablet';
   }
   return (
-    <div dir='ltr'>
+    <div dir="ltr">
       <Carousel
         arrows={false}
         responsive={responsive}
@@ -171,7 +171,7 @@ export default function CustomCarousel({
         showDots={false}
         slidesToSlide={1}
         infinite={infinite}
-        containerClass='container-with-dots'
+        containerClass="container-with-dots"
         itemClass={itemClass}
         deviceType={deviceType}
         autoPlay={autoPlay}
@@ -186,10 +186,7 @@ export default function CustomCarousel({
           if (component) return component(item);
           return (
             <div style={{ padding: '0 15px', overflow: 'hidden' }} key={index}>
-              <a
-                href={item.link}
-                style={{ display: 'flex', cursor: 'pointer' }}
-              >
+              <a href={item.link} style={{ display: 'flex', cursor: 'pointer' }}>
                 <img
                   key={item.id}
                   src={item.imgSrc}

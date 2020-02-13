@@ -10,7 +10,7 @@ export const NoResultWrapper = styled.div`
   h3 {
     font-size: 24px;
     font-weight: 700;
-    color: #0D1136;
+    color: #0d1136;
     margin: 0 0 15px;
   }
 
@@ -48,7 +48,7 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  background-color: #009e7f;
+  background-color: #171717;
   height: 50px;
   border-radius: 6px;
   font-family: 'Lato', sans-serif;

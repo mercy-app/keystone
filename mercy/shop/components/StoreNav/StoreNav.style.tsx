@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { themeGet } from "@styled-system/theme-get";
+import styled from 'styled-components';
+import { themeGet } from '@styled-system/theme-get';
 
 const StoreNavWrapper = styled.div`
   width: 100%;
@@ -29,7 +29,7 @@ export const StoreNavLinks = styled.div`
       align-items: center;
       font-size: 14px;
       font-weight: 700;
-      color: #77798C;
+      color: #77798c;
       padding: 5px 9px;
       border-radius: 6px;
       line-height: 1.2;
@@ -41,7 +41,7 @@ export const StoreNavLinks = styled.div`
       }
 
       &.current-page {
-        color: ${themeGet("colors.primary", "#009E7F")};
+        color: ${themeGet('colors.primary', '#171717')};
         background-color: #f8f8f8;
       }
     }

@@ -19,20 +19,8 @@ import Fade from 'react-reveal/Fade';
 import NoResultFound from 'components/NoResult/NoResult';
 
 const GET_PRODUCTS = gql`
-  query getProducts(
-    $type: String
-    $text: String
-    $category: String
-    $offset: Int
-    $limit: Int
-  ) {
-    products(
-      type: $type
-      text: $text
-      category: $category
-      offset: $offset
-      limit: $limit
-    ) {
+  query getProducts($type: String, $text: String, $category: String, $offset: Int, $limit: Int) {
+    products(type: $type, text: $text, category: $category, offset: $offset, limit: $limit) {
       items {
         id
         title
@@ -129,20 +117,14 @@ export const Products: React.FC<ProductsProps> = ({
         {data.products.items.map((item: any, index: number) => (
           <ProductsCol key={index} style={{ paddingLeft: 0, paddingRight: 1 }}>
             <ProductCardWrapper>
-              <Fade
-                duration={800}
-                delay={index * 10}
-                style={{ height: '100%' }}
-              >
+              <Fade duration={800} delay={index * 10} style={{ height: '100%' }}>
                 <ProductCard
                   title={item.title}
                   image={item.image}
                   name={item?.author?.name}
                   data={item}
                   deviceType={deviceType}
-                  onClick={() =>
-                    router.push('/product/[slug]', `/product/${item.slug}`)
-                  }
+                  onClick={() => router.push('/product/[slug]', `/product/${item.slug}`)}
                 />
               </Fade>
             </ProductCardWrapper>
@@ -153,16 +135,16 @@ export const Products: React.FC<ProductsProps> = ({
         <ButtonWrapper>
           <Button
             onClick={handleLoadMore}
-            title='Load More'
-            size='small'
+            title="Load More"
+            size="small"
             isLoading={loadingMore}
-            intlButtonId='loadMoreBtn'
-            loader={<Loader color='#009E7F' />}
+            intlButtonId="loadMoreBtn"
+            loader={<Loader color="#171717" />}
             style={{
               minWidth: 135,
               backgroundColor: '#ffffff',
               border: '1px solid #f1f1f1',
-              color: '#009E7F',
+              color: '#171717',
             }}
           />
         </ButtonWrapper>
