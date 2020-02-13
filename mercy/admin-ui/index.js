@@ -4,6 +4,7 @@ import Help from './pages/help';
 import OrderReceived from './pages/order-recived';
 import Bags from './pages/bags';
 import Profile from './pages/profile';
+import Sites from './pages/sites';
 
 import App from './app';
 export default {
@@ -26,6 +27,17 @@ export default {
         return (
           <App>
             <Profile />
+          </App>
+        );
+      },
+    },
+    {
+      label: 'Sites',
+      path: 'sites',
+      component: () => {
+        return (
+          <App>
+            <Sites />
           </App>
         );
       },

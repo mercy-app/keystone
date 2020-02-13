@@ -18,6 +18,7 @@ import {
 import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query-mercy';
 import { useQuery } from '@apollo/react-hooks';
 import UserImage from 'image/user.jpg';
+import { ProfileProvider } from 'contexts/profile/profile.provider';
 
 const MobileHeader = dynamic(() => import('./Header/MobileHeader-mercy'), {
   ssr: false,
@@ -74,35 +75,37 @@ const Layout: FunctionComponent<LayoutProps> = ({
     pathname === BAGS_PAGE;
   console.log(isHomePage);
   return (
-    <LayoutWrapper className={`layoutWrapper ${className}`}>
-      {(mobile || tablet) && (
-        <Sticky enabled={isSticky} innerZ={1001}>
-          <MobileHeader
-            className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''}`}
-            pathname={pathname}
-            user={data.authenticatedUser}
-          />
-        </Sticky>
-      )}
+    <ProfileProvider initData={data.authenticatedUser}>
+      <LayoutWrapper className={`layoutWrapper ${className}`}>
+        {(mobile || tablet) && (
+          <Sticky enabled={isSticky} innerZ={1001}>
+            <MobileHeader
+              className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''}`}
+              pathname={pathname}
+              user={data.authenticatedUser}
+            />
+          </Sticky>
+        )}
 
-      {desktop && (
-        <Sticky enabled={isSticky} innerZ={1001}>
-          <MobileHeader
-            className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''} desktop`}
-            pathname={pathname}
-            user={data.authenticatedUser}
-          />
-          <Header
-            className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''}`}
-            token={token}
-            pathname={pathname}
-            clientApp={clientApp}
-            user={data.authenticatedUser}
-          />
-        </Sticky>
-      )}
-      {children}
-    </LayoutWrapper>
+        {desktop && (
+          <Sticky enabled={isSticky} innerZ={1001}>
+            <MobileHeader
+              className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''} desktop`}
+              pathname={pathname}
+              user={data.authenticatedUser}
+            />
+            <Header
+              className={`${isSticky ? 'sticky' : 'unSticky'} ${isHomePage ? 'home' : ''}`}
+              token={token}
+              pathname={pathname}
+              clientApp={clientApp}
+              user={data.authenticatedUser}
+            />
+          </Sticky>
+        )}
+        {children}
+      </LayoutWrapper>
+    </ProfileProvider>
   );
 };
 

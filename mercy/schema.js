@@ -153,6 +153,11 @@ exports.User = {
       yearRangeFrom: 1901,
       yearRangeTo: getYear(new Date()),
     },
+    sites: {
+      type: Relationship,
+      ref: 'Site.user',
+      many: true,
+    },
     password: { type: Password },
     isAdmin: { type: Checkbox },
     avatar: { type: CloudinaryImage, adapter: cloudinaryAdapter },
@@ -335,6 +340,10 @@ exports.Site = {
       type: Relationship,
       ref: 'Page.site',
       many: true,
+    },
+    user: {
+      type: Relationship,
+      ref: 'User.sites',
     },
   },
   plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],

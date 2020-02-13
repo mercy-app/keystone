@@ -119,11 +119,11 @@ const DropDownMenuArray = [
     label: 'Order',
     intlId: 'sidebarYourOrder',
   },
-  {
-    link: ORDER_RECEIVED,
-    label: 'Order invoice',
-    intlId: 'navlinkOrderReceived',
-  },
+  // {
+  //   link: ORDER_RECEIVED,
+  //   label: 'Order invoice',
+  //   intlId: 'navlinkOrderReceived',
+  // },
 ];
 
 const LanguageArray = [
