@@ -37,9 +37,9 @@ import {
 const DrawerMenuItems = [
   {
     id: 1,
-    intlLabelId: 'sideBarProjects',
-    label: 'Projects',
-    href: '/',
+    intlLabelId: 'sideBarSites',
+    label: 'Sites',
+    href: '/sites',
     color: ['#E74B3C', '#C0382B'],
   },
   {
