@@ -253,45 +253,63 @@ function BoardContainer({
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <StyledBoard>
         <DroppableBoard droppableId="board-droppable" direction="horizontal" type="BOARD">
-          <div>
-            <Tools
-              key="tools"
-              index="tools01"
-              renderCard={renderCard}
-              renderColumnHeader={() => {
-                return <div>Header</div>;
-              }}
-              disableColumnDrag={disableColumnDrag}
-              disableCardDrag={disableCardDrag}
-            >
-              {board.tools}
-            </Tools>
-          </div>
-          {board.columns.map((column, index) => (
-            <Column
-              key={column.id}
-              index={index}
-              renderCard={renderCard}
-              renderColumnHeader={column =>
-                renderColumnHeader ? (
-                  renderColumnHeader(column)
-                ) : (
-                  <DefaultColumnHeader
-                    allowRemoveColumn={allowRemoveColumn}
-                    onColumnRemove={onColumnRemove}
-                    allowRenameColumn={allowRenameColumn}
-                    onColumnRename={onColumnRename}
+          {board.columns.map((column, index) => {
+            if (index === 0) {
+              return (
+                <div>
+                  <Tools
+                    key={column.id}
+                    index={index}
+                    renderCard={renderCard}
+                    renderColumnHeader={column =>
+                      renderColumnHeader ? (
+                        renderColumnHeader(column)
+                      ) : (
+                        <DefaultColumnHeader
+                          allowRemoveColumn={allowRemoveColumn}
+                          onColumnRemove={onColumnRemove}
+                          allowRenameColumn={allowRenameColumn}
+                          onColumnRename={onColumnRename}
+                        >
+                          {column}
+                        </DefaultColumnHeader>
+                      )
+                    }
+                    disableColumnDrag={disableColumnDrag}
+                    disableCardDrag={disableCardDrag}
                   >
                     {column}
-                  </DefaultColumnHeader>
-                )
-              }
-              disableColumnDrag={disableColumnDrag}
-              disableCardDrag={disableCardDrag}
-            >
-              {column}
-            </Column>
-          ))}
+                  </Tools>
+                </div>
+              );
+            } else {
+              return (
+                <Column
+                  key={column.id}
+                  index={index}
+                  renderCard={renderCard}
+                  renderColumnHeader={column =>
+                    renderColumnHeader ? (
+                      renderColumnHeader(column)
+                    ) : (
+                      <DefaultColumnHeader
+                        allowRemoveColumn={allowRemoveColumn}
+                        onColumnRemove={onColumnRemove}
+                        allowRenameColumn={allowRenameColumn}
+                        onColumnRename={onColumnRename}
+                      >
+                        {column}
+                      </DefaultColumnHeader>
+                    )
+                  }
+                  disableColumnDrag={disableColumnDrag}
+                  disableCardDrag={disableCardDrag}
+                >
+                  {column}
+                </Column>
+              );
+            }
+          })}
         </DroppableBoard>
         {renderColumnAdder()}
       </StyledBoard>
