@@ -5,7 +5,7 @@ import { Modal } from '@redq/reuse-modal';
 import { withApollo } from 'helper/apollo-mercy';
 
 import Site from 'containers/Site-mercy';
-import { MainContentArea, ContentSection } from 'styled/pages.style';
+import { MainContentArea, ContentSection } from 'styled/pages.style-mercy';
 // Static Data Import Here
 import { withRouter } from 'react-router-dom';
 

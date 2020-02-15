@@ -4,14 +4,7 @@ import dynamic from 'next/dynamic';
 import gql from 'graphql-tag';
 import { openModal, closeModal } from '@redq/reuse-modal';
 import SiteCard from 'components/SiteCard-mercy';
-import {
-  SitesRow,
-  SitesCol,
-  ButtonWrapper,
-  LoaderWrapper,
-  LoaderItem,
-  SiteCardWrapper,
-} from './Site.style-mercy';
+import { LoaderWrapper, LoaderItem } from './Site.style-mercy';
 import { CURRENCY } from 'helper/constant';
 import { useQuery } from '@apollo/react-hooks';
 import Button from 'components/Button/Button';
@@ -22,6 +15,7 @@ import NoResultFound from 'components/NoResult/NoResult';
 import { withRouter } from 'react-router-dom';
 import getAllUrlParams from 'helper/getAllUrlParams-mercy';
 import { ProfileContext } from 'contexts/profile/profile.context';
+import Board from '@lourenci/react-kanban';
 
 const QuickView = dynamic(() => import('../QuickView/QuickView'));
 
@@ -37,28 +31,81 @@ const GET_SITE = gql`
 `;
 
 type SitesProps = {
-  // deviceType?: {
-  //   mobile: boolean;
-  //   tablet: boolean;
-  //   desktop: boolean;
-  // };
-  // type: string;
-  // fetchLimit?: number;
-  // loadMore?: boolean;
   clientApp?: boolean;
-  // location?: any;
 };
-export const Site: React.FC<SitesProps> = ({
-  // deviceType,
-  // type,
-  // fetchLimit = 8,
-  // loadMore = true,
-  clientApp,
-  // location,
-  ...rest
-}) => {
-  let pathname;
 
+const board = {
+  columns: [
+    {
+      id: 1,
+      title: 'Backlog',
+      cards: [
+        {
+          id: 1,
+          title: 'Card title 1',
+          description: 'Card content',
+        },
+        {
+          id: 2,
+          title: 'Card title 2',
+          description: 'Card content',
+        },
+        {
+          id: 3,
+          title: 'Card title 3',
+          description: 'Card content',
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: 'Doing',
+      cards: [
+        {
+          id: 9,
+          title: 'Card title 9',
+          description: 'Card content',
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: 'Q&A',
+      cards: [
+        {
+          id: 10,
+          title: 'Card title 10',
+          description: 'Card content',
+        },
+        {
+          id: 11,
+          title: 'Card title 11',
+          description: 'Card content',
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: 'Production',
+      cards: [
+        {
+          id: 12,
+          title: 'Card title 12',
+          description: 'Card content',
+        },
+        {
+          id: 13,
+          title: 'Card title 13',
+          description: 'Card content',
+        },
+      ],
+    },
+  ],
+};
+
+export const Site: React.FC<SitesProps> = ({ clientApp, ...rest }) => {
+  let pathname;
+  console.log('yoyoyo');
   if (!clientApp) {
     pathname = useRouter();
   } else {
@@ -66,100 +113,44 @@ export const Site: React.FC<SitesProps> = ({
     pathname = pathname.split('/')[pathname.split('/').length - 1];
   }
 
-  // const { state, dispatch } = useContext(ProfileContext);
-  const [loadingMore, toggleLoading] = useState(false);
   const { data, error, loading, fetchMore } = useQuery(GET_SITE, {
     variables: {
       id: pathname,
     },
   });
 
-  // Quick View Modal
-  // const handleModalClose = () => {
-  //   const href = `${router.pathname}`;
-  //   const as = '/';
-  //   router.push(href, as, { shallow: true });
-  //   closeModal();
-  // };
-  // const handleQuickViewModal = React.useCallback(
-  //   (modalProps: any, deviceType: any, onModalClose: any) => {
-  //     if (router.pathname === '/Site/[slug]') {
-  //       const as = `/Site/${modalProps.slug}`;
-  //       router.push(router.pathname, as);
-  //       return;
-  //     }
-  //     openModal({
-  //       show: true,
-  //       overlayClassName: 'quick-view-overlay',
-  //       closeOnClickOutside: false,
-  //       component: QuickView,
-  //       componentProps: { modalProps, deviceType, onModalClose },
-  //       closeComponent: 'div',
-  //       config: {
-  //         enableResizing: false,
-  //         disableDragging: true,
-  //         className: 'quick-view-modal',
-  //         width: 900,
-  //         y: 30,
-  //         height: 'auto',
-  //         transition: {
-  //           mass: 1,
-  //           tension: 0,
-  //           friction: 0,
-  //         },
-  //       },
-  //     });
-  //     const href = `${router.pathname}?${modalProps.slug}`;
-  //     const as = `/Site/${modalProps.slug}`;
-  //     router.push(href, as, { shallow: true });
-  //   },
-  //   []
-  // );
+  // if (loading) {
+  //   return (
+  //     <LoaderWrapper>
+  //       <LoaderItem>
+  //         <Placeholder />
+  //       </LoaderItem>
+  //       <LoaderItem>
+  //         <Placeholder />
+  //       </LoaderItem>
+  //       <LoaderItem>
+  //         <Placeholder />
+  //       </LoaderItem>
+  //     </LoaderWrapper>
+  //   );
+  // }
 
-  if (loading) {
-    return (
-      <LoaderWrapper>
-        <LoaderItem>
-          <Placeholder />
-        </LoaderItem>
-        <LoaderItem>
-          <Placeholder />
-        </LoaderItem>
-        <LoaderItem>
-          <Placeholder />
-        </LoaderItem>
-      </LoaderWrapper>
-    );
-  }
+  // if (error) return <div>{error.message}</div>;
+  // if (!data || !data.site) {
+  //   return <NoResultFound />;
+  // }
 
-  if (error) return <div>{error.message}</div>;
-  if (!data || !data.site) {
-    return <NoResultFound />;
-  }
-  // const handleLoadMore = () => {
-  //   toggleLoading(true);
-  //   fetchMore({
-  //     variables: {
-  //       offset: Number(data.allSites.length),
-  //       limit: fetchLimit,
-  //     },
-  //     updateQuery: (prev, { fetchMoreResult }) => {
-  //       toggleLoading(false);
-  //       if (!fetchMoreResult) {
-  //         return prev;
-  //       }
-  //       return {
-  //         Sites: {
-  //           __typename: prev.Sites.__typename,
-  //           items: [...prev.Sites, ...fetchMoreResult.Sites],
-  //           hasMore: fetchMoreResult.Sites.hasMore,
-  //         },
-  //       };
-  //     },
-  //   });
-  // };
-
-  return <>a</>;
+  return (
+    <Board
+      allowRemoveLane
+      allowRenameColumn
+      allowRemoveCard
+      onLaneRemove={console.log}
+      onCardRemove={console.log}
+      onLaneRename={console.log}
+      initialBoard={board}
+    />
+  );
 };
 
 export default props => {

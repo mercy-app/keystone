@@ -91,13 +91,13 @@ const DrawerMenuItems = [
     href: '/',
     color: ['#345F41', '#2C5036'],
   },
-  {
-    id: 8,
-    intlLabelId: 'sideBarProfile',
-    label: 'Profile',
-    href: '/',
-    color: ['#95A5A6', '#7F8C8D'],
-  },
+  // {
+  //   id: 8,
+  //   intlLabelId: 'sideBarProfile',
+  //   label: 'Profile',
+  //   href: '/',
+  //   color: ['#95A5A6', '#7F8C8D'],
+  // },
 ];
 
 // const DrawerMenuItems = [
@@ -198,7 +198,7 @@ const MobileDrawer: React.FunctionComponent<any> = ({ clientApp, user }) => {
 
   return (
     <Drawer
-      width="100%"
+      width="60%"
       drawerHandler={
         <HamburgerIcon>
           <span />

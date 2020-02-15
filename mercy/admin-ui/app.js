@@ -46,7 +46,7 @@ const messages = {
   he: localIl,
 };
 
-export default withRouter(({ children, location }) => {
+export default withRouter(({ children, location, noLayout }) => {
   console.log(location);
   // let adminMeta = useAdminMeta();
   // const list = adminMeta.getListByPath(listKey);
@@ -62,10 +62,14 @@ export default withRouter(({ children, location }) => {
                 <StickyProvider>
                   <AuthProvider>
                     <>
-                      <AppLayout clientApp={true} deviceType={deviceType}>
-                        {children}
-                        {/*<Component {...pageProps} deviceType={deviceType} />*/}
-                      </AppLayout>
+                      {noLayout ? (
+                        children
+                      ) : (
+                        <AppLayout clientApp={true} deviceType={deviceType}>
+                          {children}
+                          {/*<Component {...pageProps} deviceType={deviceType} />*/}
+                        </AppLayout>
+                      )}
                       <GlobalStyle />
                     </>
                   </AuthProvider>

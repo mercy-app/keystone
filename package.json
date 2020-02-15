@@ -146,6 +146,7 @@
   },
   "workspaces": {
     "packages": [
+      "react-kanban",
       "mercy",
       "packages/*",
       "!packages/arch",

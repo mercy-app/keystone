@@ -60,7 +60,7 @@ export default {
       path: 'mercy/sites/:site_id',
       component: () => {
         return (
-          <App>
+          <App noLayout={true}>
             <Site />
           </App>
         );
