@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import gql from 'graphql-tag';
@@ -15,31 +15,17 @@ import NoResultFound from 'components/NoResult/NoResult';
 import { withRouter } from 'react-router-dom';
 import getAllUrlParams from 'helper/getAllUrlParams-mercy';
 import { ProfileContext } from 'contexts/profile/profile.context';
-import Board from 'react-board';
-const QuickView = dynamic(() => import('../QuickView/QuickView'));
+import Board, { addCard, moveCard } from 'react-board';
+import { CreateItemModal } from '@keystonejs/app-admin-ui/client-mercy';
+import { useList } from '@keystonejs/app-admin-ui/components';
 
-const board = {
-  tools: {
-    id: 231,
-    title: 'Backlog',
-    cards: [
-      {
-        id: 231,
-        title: 'Card title 1',
-        description: 'Card content',
-      },
-      {
-        id: 232,
-        title: 'Card title 2',
-        description: 'Card content',
-      },
-      {
-        id: 3232,
-        title: 'Card title 3',
-        description: 'Card content',
-      },
-    ],
-  },
+const QuickView = dynamic(() => import('../QuickView/QuickView'));
+const getBoard = () => {
+  return new Promise((resolve, reject) => {
+    resolve(originalBoard);
+  });
+};
+const originalBoard = {
   columns: [
     {
       id: 1,
@@ -114,6 +100,16 @@ const GET_SITE = gql`
       id
       title
       description
+      pages {
+        id
+        title
+        description
+        sections {
+          id
+          title
+          description
+        }
+      }
     }
     # hasMore
   }
@@ -124,6 +120,8 @@ type SitesProps = {
 };
 export const Site: React.FC<SitesProps> = ({ clientApp, ...rest }) => {
   let pathname;
+  const [board, setBoard] = useState(null);
+  const { list, openCreateItemModal } = useList();
 
   if (!clientApp) {
     pathname = useRouter();
@@ -138,28 +136,71 @@ export const Site: React.FC<SitesProps> = ({ clientApp, ...rest }) => {
     },
   });
 
-  // if (loading) {
-  //   return (
-  //     <LoaderWrapper>
-  //       <LoaderItem>
-  //         <Placeholder />
-  //       </LoaderItem>
-  //       <LoaderItem>
-  //         <Placeholder />
-  //       </LoaderItem>
-  //       <LoaderItem>
-  //         <Placeholder />
-  //       </LoaderItem>
-  //     </LoaderWrapper>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <LoaderWrapper>
+        <LoaderItem>
+          <Placeholder />
+        </LoaderItem>
+        <LoaderItem>
+          <Placeholder />
+        </LoaderItem>
+        <LoaderItem>
+          <Placeholder />
+        </LoaderItem>
+      </LoaderWrapper>
+    );
+  }
 
-  // if (error) return <div>{error.message}</div>;
-  // if (!data || !data.site) {
-  //   return <NoResultFound />;
-  // }
-
-  return <Board initialBoard={board} />;
+  if (error) return <div>{error.message}</div>;
+  if (!data || !data.Site) {
+    return <NoResultFound />;
+  } else {
+    if (!board) {
+      const columns = data.Site.pages;
+      for (let index = 0; index < columns.length; index++) {
+        columns[index].cards = [...columns[index].sections];
+      }
+      columns.splice(0, 0, {
+        id: 123,
+        title: 'tools',
+        description: 'description',
+        cards: [{ id: 222, title: 'card tool', description: 'description' }],
+      });
+      setBoard({
+        columns,
+      });
+    } else {
+      return (
+        <>
+          <Board
+            allowRemoveLane
+            allowRenameColumn
+            allowRemoveCard
+            onLaneRemove={console.log}
+            onCardRemove={console.log}
+            onLaneRename={console.log}
+            onCardDragEnd={(card, source, destination) => {
+              if (destination.toColumnId != 123) {
+                let newBoard = moveCard(board, source, destination);
+                if (source.fromColumnId === 123) {
+                  const tool = JSON.parse(JSON.stringify(card));
+                  card.id = card.id + Math.random().toString();
+                  newBoard.columns[0].cards.push(tool);
+                }
+                console.log(newBoard);
+                setBoard(newBoard);
+                openCreateItemModal();
+              }
+            }}
+          >
+            {board}
+          </Board>
+          <CreateItemModal />
+        </>
+      );
+    }
+  }
 };
 
 export default props => {

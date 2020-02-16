@@ -7,7 +7,7 @@ import { withApollo } from 'helper/apollo-mercy';
 import { MainContentArea, ContentSection } from 'styled/pages.style';
 // Static Data Import Here
 import { withRouter } from 'react-router-dom';
-import { useAdminMeta, ListData } from '@keystonejs/app-admin-ui/client';
+import { useAdminMeta, ListData } from '@keystonejs/app-admin-ui/client-mercy';
 import { ListProvider } from '@keystonejs/app-admin-ui/components';
 
 function SitePage(props) {
