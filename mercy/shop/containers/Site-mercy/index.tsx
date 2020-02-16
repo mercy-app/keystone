@@ -19,81 +19,6 @@ import Board, { addCard, moveCard } from 'react-board';
 import { CreateItemModal } from '@keystonejs/app-admin-ui/client-mercy';
 import { useList } from '@keystonejs/app-admin-ui/components';
 
-const QuickView = dynamic(() => import('../QuickView/QuickView'));
-const getBoard = () => {
-  return new Promise((resolve, reject) => {
-    resolve(originalBoard);
-  });
-};
-const originalBoard = {
-  columns: [
-    {
-      id: 1,
-      title: 'Backlog',
-      cards: [
-        {
-          id: 1,
-          title: 'Card title 1',
-          description: 'Card content',
-        },
-        {
-          id: 2,
-          title: 'Card title 2',
-          description: 'Card content',
-        },
-        {
-          id: 3,
-          title: 'Card title 3',
-          description: 'Card content',
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: 'Doing',
-      cards: [
-        {
-          id: 9,
-          title: 'Card title 9',
-          description: 'Card content',
-        },
-      ],
-    },
-    {
-      id: 3,
-      title: 'Q&A',
-      cards: [
-        {
-          id: 10,
-          title: 'Card title 10',
-          description: 'Card content',
-        },
-        {
-          id: 11,
-          title: 'Card title 11',
-          description: 'Card content',
-        },
-      ],
-    },
-    {
-      id: 4,
-      title: 'Production',
-      cards: [
-        {
-          id: 12,
-          title: 'Card title 12',
-          description: 'Card content',
-        },
-        {
-          id: 13,
-          title: 'Card title 13',
-          description: 'Card content',
-        },
-      ],
-    },
-  ],
-};
-
 const GET_SITE = gql`
   query getSite($id: ID!) {
     Site(where: { id: $id }) {
@@ -122,7 +47,7 @@ export const Site: React.FC<SitesProps> = ({ clientApp, ...rest }) => {
   let pathname;
   const [board, setBoard] = useState(null);
   const { list, openCreateItemModal } = useList();
-
+  const [prefillData, setPrefillData] = useState(null);
   if (!clientApp) {
     pathname = useRouter();
   } else {
@@ -130,7 +55,7 @@ export const Site: React.FC<SitesProps> = ({ clientApp, ...rest }) => {
     pathname = pathname.split('/')[pathname.split('/').length - 1];
   }
 
-  const { data, error, loading, fetchMore } = useQuery(GET_SITE, {
+  const { data, error, loading, refetch } = useQuery(GET_SITE, {
     variables: {
       id: pathname,
     },
@@ -182,21 +107,35 @@ export const Site: React.FC<SitesProps> = ({ clientApp, ...rest }) => {
             onLaneRename={console.log}
             onCardDragEnd={(card, source, destination) => {
               if (destination.toColumnId != 123) {
-                let newBoard = moveCard(board, source, destination);
                 if (source.fromColumnId === 123) {
-                  const tool = JSON.parse(JSON.stringify(card));
-                  card.id = card.id + Math.random().toString();
-                  newBoard.columns[0].cards.push(tool);
+                  setPrefillData({
+                    title: 'something',
+                    page: destination.toColumnId,
+                  });
+                  openCreateItemModal();
+                  // const tool = JSON.parse(JSON.stringify(card));
+                  // card.id = card.id + Math.random().toString();
+                  // newBoard.columns[0].cards.push(tool);
+                } else {
+                  let newBoard = moveCard(board, source, destination);
+                  console.log(newBoard);
+                  setBoard(newBoard);
                 }
-                console.log(newBoard);
-                setBoard(newBoard);
-                openCreateItemModal();
               }
             }}
           >
             {board}
           </Board>
-          <CreateItemModal />
+          {prefillData && (
+            <CreateItemModal
+              onCreate={() => {
+                refetch();
+                setPrefillData(null);
+              }}
+              onClose={() => setPrefillData(null)}
+              prefillData={prefillData}
+            />
+          )}
         </>
       );
     }

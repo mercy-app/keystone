@@ -14,7 +14,7 @@ import { ListProvider } from '@keystonejs/app-admin-ui/components';
 
 function SitePage({ location }) {
   let adminMeta = useAdminMeta();
-  const list = adminMeta.getListByPath('orders');
+  const list = adminMeta.getListByPath('sections');
   return (
     <ListProvider list={list}>
       {/*<Head>
