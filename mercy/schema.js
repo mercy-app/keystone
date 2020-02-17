@@ -25,6 +25,39 @@ const {
 const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
 const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
 const getYear = require('date-fns/get_year');
+const AgencyTemplate = require('./shop/common/src/data/Agency/template-mercy');
+const AppTemplate = require('./shop/common/src/data/App/template-mercy');
+
+const getSectionType = item => {
+  if (!item.sectionTemplate || !item.sectionType) {
+    return null;
+  }
+  const template = getSectionTemplate(item);
+  if (!template) {
+    return null;
+  }
+  return template[item.sectionType] ? template[item.sectionType] : null;
+};
+
+const getSectionTemplate = item => {
+  if (!item.sectionTemplate) {
+    return null;
+  }
+  let template;
+  switch (item.sectionTemplate) {
+    case 'App':
+      template = AppTemplate;
+      break;
+    case 'Agency':
+      template = AgencyTemplate;
+      break;
+    default:
+      return null;
+      break;
+  }
+
+  return template;
+};
 
 // const { staticRoute, staticPath, distDir } = require('./config');
 const dev = process.env.NODE_ENV !== 'production';
@@ -384,11 +417,14 @@ exports.Section = {
       type: Relationship,
       ref: 'Page.sections',
     },
+    type: { type: Text },
     blocks: {
       type: Relationship,
       ref: 'Block.section',
       many: true,
     },
+    sectionTemplate: { type: Text },
+    sectionType: { type: Text },
   },
   plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],
   labelResolver: item => item.title,
@@ -396,13 +432,28 @@ exports.Section = {
 
 exports.Block = {
   fields: {
-    title: { type: Text },
+    title: {
+      type: Text,
+      access: {
+        read: ({ existingItem }) => {
+          const sectionType = getSectionType(existingItem);
+          if (existingItem.sectionTemplate && existingItem.sectionType) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+      },
+    },
     description: { type: Text },
     section: {
       type: Relationship,
       ref: 'Section.blocks',
     },
+    sectionTemplate: { type: Text },
+    sectionType: { type: Text },
   },
+
   plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],
   labelResolver: item => item.title,
 };
