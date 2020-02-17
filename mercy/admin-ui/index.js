@@ -7,10 +7,18 @@ import Profile from './pages/profile';
 import Sites from './pages/sites';
 import Site from './pages/site';
 import Orders from './pages/orders';
+import Viewer from './pages/viewer';
 
 import App from './app';
 export default {
   pages: () => [
+    {
+      label: 'Viewer',
+      path: 'viewer/:site_id',
+      component: () => {
+        return <Viewer />;
+      },
+    },
     {
       label: 'Help',
       path: '',

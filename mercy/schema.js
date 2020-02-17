@@ -411,44 +411,96 @@ exports.Page = {
 
 exports.Section = {
   fields: {
-    title: { type: Text },
-    description: { type: Text },
     page: {
       type: Relationship,
       ref: 'Page.sections',
     },
     type: { type: Text },
-    blocks: {
+    lists: {
       type: Relationship,
-      ref: 'Block.section',
+      ref: 'List.section',
       many: true,
     },
-    sectionTemplate: { type: Text },
-    sectionType: { type: Text },
+    template: { type: Text },
+    type: { type: Text },
+    oid: { type: Integer },
+    name: { type: Text },
+    logo: { type: Text },
+    slogan: { type: Text },
+    title: { type: Text },
+    description: { type: Text },
+    image: { type: Text },
   },
   plugins: [atTracking(), createdAt(), updatedAt(), byTracking(), createdBy(), updatedBy()],
   labelResolver: item => item.title,
 };
 
-exports.Block = {
+exports.List = {
   fields: {
-    title: {
+    name: {
       type: Text,
-      access: {
-        read: ({ existingItem }) => {
-          const sectionType = getSectionType(existingItem);
-          if (existingItem.sectionTemplate && existingItem.sectionType) {
-            return true;
-          } else {
-            return false;
-          }
-        },
-      },
     },
-    description: { type: Text },
     section: {
       type: Relationship,
-      ref: 'Section.blocks',
+      ref: 'Section.lists',
+    },
+    parentBlock: {
+      type: Relationship,
+      ref: 'Block.childrenList',
+    },
+    blocks: {
+      type: Relationship,
+      ref: 'Block.list',
+      many: true,
+    },
+  },
+};
+
+exports.Block = {
+  fields: {
+    oid: { type: Integer },
+    title: {
+      type: Text,
+      // access: {
+      //   read: ({ existingItem }) => {
+      //     const sectionType = getSectionType(existingItem);
+      //     if (existingItem.sectionTemplate && existingItem.sectionType) {
+      //       return true;
+      //     } else {
+      //       return false;
+      //     }
+      //   },
+      // },
+    },
+    label: { type: Text },
+    path: { type: Text },
+    offset: { type: Text },
+    image: { type: Text },
+    color: { type: Text },
+    icon: { type: Text },
+    description: { type: Text },
+    thumb_url: { type: Text },
+    link: { type: Text },
+    suggested: { type: Checkbox },
+    price: { type: Integer },
+    features: { type: Text },
+    trail: { type: Integer },
+    trailLink: { type: Text },
+    img: { type: Text },
+    text: { type: Text },
+    avatar: { type: Text },
+    name: { type: Text },
+    designation: { type: Text },
+    review: { type: Integer },
+    childrenList: {
+      type: Relationship,
+      ref: 'List.parentBlock',
+      many: true,
+    },
+    description: { type: Text },
+    list: {
+      type: Relationship,
+      ref: 'List.blocks',
     },
     sectionTemplate: { type: Text },
     sectionType: { type: Text },

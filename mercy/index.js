@@ -30,6 +30,7 @@ const {
   Collection,
   Customer,
   Coupon,
+  List,
 } = require('./schema');
 const PROJECT_NAME = 'mercy-app';
 
@@ -49,6 +50,7 @@ keystone.createList('Contact', Contact);
 keystone.createList('Card', Card);
 keystone.createList('Product', Product);
 keystone.createList('Category', Category);
+keystone.createList('List', List);
 // keystone.createList('Comment', Comment);
 keystone.createList('Site', Site);
 keystone.createList('Page', Page);

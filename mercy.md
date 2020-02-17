@@ -27,11 +27,13 @@ Keystone
 |
 |____ packages -> keystone modules
 |____ |____ app-admin-ui -> keystone admin ui with mercy customizations
+|____ |____ etc -> keystone packages
 |____ mercy -> mercy main folder
 |____ |____ admin-ui -> pages using keystones admin custom hooks page.
 |____ |____ shop -> pickbazar next.js app
 |____ |____ |____ common -> superprops landing functions
 |____ |____ |____ landing -> superprops landing pages
+|____ |____ |____ react-board -> customized from react-kanban package
 |____ |____ |____ etc -> rest files are for pickbazar shop
 ```
 
