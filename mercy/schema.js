@@ -415,7 +415,6 @@ exports.Section = {
       type: Relationship,
       ref: 'Page.sections',
     },
-    type: { type: Text },
     lists: {
       type: Relationship,
       ref: 'List.section',
